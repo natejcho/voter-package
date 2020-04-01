@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import _styled from \"@emotion/styled-base\";\nvar _jsxFileName = \"/Users/nathanielcho/Projects/voter-package/components/Vote.js\";\nimport React from \"react\";\nvar __jsx = React.createElement;\nimport { GoArrowUp } from \"react-icons/go\";\n\nvar Styled = _styled(\"div\", {\n  target: \"ewmgxmf0\",\n  label: \"Styled\"\n})(\"svg{fill:\", props.isClicked ? '#757575' : '#9b9b9b', \";cursor:pointer;}\" + (false ? \"\" : \"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9uYXRoYW5pZWxjaG8vUHJvamVjdHMvdm90ZXItcGFja2FnZS9jb21wb25lbnRzL1ZvdGUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR3lCIiwiZmlsZSI6Ii9Vc2Vycy9uYXRoYW5pZWxjaG8vUHJvamVjdHMvdm90ZXItcGFja2FnZS9jb21wb25lbnRzL1ZvdGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgc3R5bGVkIGZyb20gJ0BlbW90aW9uL3N0eWxlZCdcbmltcG9ydCB7IEdvQXJyb3dVcCB9IGZyb20gXCJyZWFjdC1pY29ucy9nb1wiO1xuXG5jb25zdCBTdHlsZWQgPSBzdHlsZWQuZGl2YFxuICBzdmcge1xuICAgIGZpbGw6ICR7cHJvcHMuaXNDbGlja2VkID8gJyM3NTc1NzUnIDogJyM5YjliOWInfTtcbmN1cnNvcjogcG9pbnRlcjtcbiAgfVxuYDtcblxuZnVuY3Rpb24gVm90ZShwcm9wcykge1xuICByZXR1cm4gKFxuICAgIDxTdHlsZWQ+XG4gICAgICA8R29BcnJvd1VwIC8+XG4gICAgPC8gU3R5bGVkPlxuICApO1xufVxuXG5leHBvcnQgZGVmYXVsdCBWb3RlOyJdfQ== */\"));\n\nfunction Vote(props) {\n  return __jsx(Styled, {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 13,\n      columnNumber: 5\n    }\n  }, __jsx(GoArrowUp, {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 14,\n      columnNumber: 7\n    }\n  }));\n}\n\nexport default Vote;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/nathanielcho/Projects/voter-package/components/Vote.js"
+    ],
+    "names": ["GoArrowUp", "Styled", "props", "isClicked", "Vote"],
+    "mappings": ";;;;AACA,SAASA,SAAT,QAA0B,gBAA1B;;AAEA,IAAMC,MAAM;AAAA;AAAA;AAAA,gBAEAC,KAAK,CAACC,SAAN,GAAkB,SAAlB,GAA8B,SAF9B,6zBAAZ;;AAOA,SAASC,IAAT,CAAcF,KAAd,EAAqB;AACnB,SACE,MAAC,MAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACE,MAAC,SAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IADF,CADF;AAKD;;AAED,eAAeE,IAAf",
+    "sourcesContent": [
+      "import styled from '@emotion/styled'\nimport { GoArrowUp } from \"react-icons/go\";\n\nconst Styled = styled.div`\n  svg {\n    fill: ${props.isClicked ? '#757575' : '#9b9b9b'};\ncursor: pointer;\n  }\n`;\n\nfunction Vote(props) {\n  return (\n    <Styled>\n      <GoArrowUp />\n    </ Styled>\n  );\n}\n\nexport default Vote;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

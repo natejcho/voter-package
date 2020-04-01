@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/nathanielcho/Projects/voter-package/components/Vote.js\";\nimport React from \"react\";\nvar __jsx = React.createElement;\n\nfunction _EMOTION_STRINGIFIED_CSS_ERROR__() { return \"You have tried to stringify object returned from `css` function. It isn't supposed to be used directly (e.g. as value of the `className` prop), but rather handed to emotion so it can handle it (e.g. as value of `css` prop).\"; }\n\nimport { css } from '@emotion/core';\nimport { GoArrowUp } from \"react-icons/go\";\nconst style = false ? {\n  name: \"mi1gu8-style\",\n  styles: \"svg{fill:#838383;cursor:pointer;};label:style;\"\n} : {\n  name: \"mi1gu8-style\",\n  styles: \"svg{fill:#838383;cursor:pointer;};label:style;\",\n  map: \"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9uYXRoYW5pZWxjaG8vUHJvamVjdHMvdm90ZXItcGFja2FnZS9jb21wb25lbnRzL1ZvdGUuanMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBR2lCIiwiZmlsZSI6Ii9Vc2Vycy9uYXRoYW5pZWxjaG8vUHJvamVjdHMvdm90ZXItcGFja2FnZS9jb21wb25lbnRzL1ZvdGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBjc3MgfSBmcm9tICdAZW1vdGlvbi9jb3JlJztcbmltcG9ydCB7IEdvQXJyb3dVcCB9IGZyb20gXCJyZWFjdC1pY29ucy9nb1wiO1xuXG5jb25zdCBzdHlsZSA9IGNzc2BcbiAgc3ZnIHtcbiAgICBmaWxsOiAjODM4MzgzO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuYDtcblxuZnVuY3Rpb24gVm90ZShwcm9wcykge1xuICByZXR1cm4gKFxuICAgIDxkaXYgY3NzPXtzdHlsZX0+XG4gICAgICA8R29BcnJvd1VwIC8+XG4gICAgPC8gZGl2PlxuICApO1xufVxuXG5leHBvcnQgZGVmYXVsdCBWb3RlOyJdfQ== */\",\n  toString: _EMOTION_STRINGIFIED_CSS_ERROR__\n};\n\nfunction Vote(props) {\n  return __jsx(\"div\", {\n    css: style,\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 13,\n      columnNumber: 5\n    }\n  }, __jsx(GoArrowUp, {\n    __self: this,\n    __source: {\n      fileName: _jsxFileName,\n      lineNumber: 14,\n      columnNumber: 7\n    }\n  }));\n}\n\nexport default Vote;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/nathanielcho/Projects/voter-package/components/Vote.js"
+    ],
+    "names": ["css", "GoArrowUp", "style", "Vote", "props"],
+    "mappings": ";;;;;;AAAA,SAASA,GAAT,QAAoB,eAApB;AACA,SAASC,SAAT,QAA0B,gBAA1B;AAEA,MAAMC,KAAK;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,CAAX;;AAOA,SAASC,IAAT,CAAcC,KAAd,EAAqB;AACnB,SACE;AAAK,IAAA,GAAG,EAAEF,KAAV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,KACE,MAAC,SAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IADF,CADF;AAKD;;AAED,eAAeC,IAAf",
+    "sourcesContent": [
+      "import { css } from '@emotion/core';\nimport { GoArrowUp } from \"react-icons/go\";\n\nconst style = css`\n  svg {\n    fill: #838383;\n    cursor: pointer;\n  }\n`;\n\nfunction Vote(props) {\n  return (\n    <div css={style}>\n      <GoArrowUp />\n    </ div>\n  );\n}\n\nexport default Vote;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}

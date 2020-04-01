@@ -1,0 +1,30 @@
+{
+  "ast": null,
+  "code": "var _jsxFileName = \"/Users/nathanielcho/Projects/voter-package/components/Card.js\";\nimport React from \"react\";\nvar __jsx = React.createElement;\nimport { css } from '@emotion/coreemotion';\nimport Vote from './Vote';\nconst style = css`\n  \n`;\n\nconst Card = props => __jsx(\"div\", {\n  css: style,\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 9,\n    columnNumber: 3\n  }\n}, __jsx(\"div\", {\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 10,\n    columnNumber: 5\n  }\n}, props.index, __jsx(Vote, {\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 12,\n    columnNumber: 7\n  }\n}), __jsx(\"span\", {\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 13,\n    columnNumber: 7\n  }\n}, props.title)), __jsx(\"span\", {\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 15,\n    columnNumber: 5\n  }\n}, props.points, \" points | Sponsor Name: \", props.sponsor_name, \" \", props.latest_major_action_date, \" | \", __jsx(\"span\", {\n  __self: this,\n  __source: {\n    fileName: _jsxFileName,\n    lineNumber: 16,\n    columnNumber: 101\n  }\n}, \"hide\"), \" | \", props.comments.length, \" comments\"));\n\nexport default Card;",
+  "map": {
+    "version": 3,
+    "sources": [
+      "/Users/nathanielcho/Projects/voter-package/components/Card.js"
+    ],
+    "names": [
+      "css",
+      "Vote",
+      "style",
+      "Card",
+      "props",
+      "index",
+      "title",
+      "points",
+      "sponsor_name",
+      "latest_major_action_date",
+      "comments",
+      "length"
+    ],
+    "mappings": ";;;AAAA,SAASA,GAAT,QAAoB,sBAApB;AACA,OAAOC,IAAP,MAAiB,QAAjB;AAEA,MAAMC,KAAK,GAAGF,GAAI;;CAAlB;;AAIA,MAAMG,IAAI,GAAIC,KAAD,IACX;AAAK,EAAA,GAAG,EAAEF,KAAV;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GACE;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GACGE,KAAK,CAACC,KADT,EAEE,MAAC,IAAD;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,EAFF,EAGE;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GAAOD,KAAK,CAACE,KAAb,CAHF,CADF,EAME;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,GACGF,KAAK,CAACG,MADT,8BACyCH,KAAK,CAACI,YAD/C,OAC8DJ,KAAK,CAACK,wBADpE,SACgG;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,UADhG,SACqHL,KAAK,CAACM,QAAN,CAAeC,MADpI,cANF,CADF;;AAaA,eAAeR,IAAf",
+    "sourcesContent": [
+      "import { css } from '@emotion/coreemotion';\nimport Vote from './Vote';\n\nconst style = css`\n  \n`;\n\nconst Card = (props) => (\n  <div css={style} >\n    <div>\n      {props.index}\n      <Vote />\n      <span>{props.title}</span>\n    </div>\n    <span>\n      {props.points} points | Sponsor Name: {props.sponsor_name} {props.latest_major_action_date} | <span>hide</span> | {props.comments.length} comments\n    </span>\n  </div>\n);\n\nexport default Card;"
+    ]
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
