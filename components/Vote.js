@@ -8,7 +8,7 @@ const Styled = styled.div`
   }
   svg {
     cursor: pointer;
-    fill: ${props => (props.isClicked ? "black" : "#9b9b9b")};
+    fill: ${(props) => (props.isClicked ? "black" : "#9b9b9b")};
     height: 1.1rem;
     width: 0.8rem;
   }
@@ -18,7 +18,7 @@ function Vote(props) {
   const [isClicked, setIsClicked] = React.useState(false);
   return (
     <Styled isClicked={isClicked}>
-      <GoArrowUp onClick={() => setIsClicked(prev => !prev)} />
+      <GoArrowUp onClick={() => setIsClicked((prev) => !prev)} />
       <span className="points">{props.points}</span>
     </Styled>
   );

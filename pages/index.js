@@ -30,12 +30,12 @@ export async function getServerSideProps() {
     method: "get",
     mode: "cors",
     headers: {
-      "X-API-Key": process.env.PROPUBLICA_API_KEY
-    }
+      "X-API-Key": process.env.PROPUBLICA_API_KEY,
+    },
   });
   const data = await res.json();
   return {
-    props: { recentBills: data.results }
+    props: { recentBills: data.results },
   };
 }
 

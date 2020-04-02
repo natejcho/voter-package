@@ -27,20 +27,20 @@ const Styled = styled.tr`
     }
 
     .title {
-      color: ${props => (props.visited ? "#828282" : "#000")};
+      color: ${(props) => (props.visited ? "#828282" : "#000")};
       font-size: 13pt;
     }
   }
 `;
 
-const Card = props => {
+const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
   return (
     <Styled>
       {isVisible && (
         <>
           <td className="index">{props.index}.</td>
-          <td style={{ "vertical-align": "top" }}>
+          <td style={{ verticalAlign: "top" }}>
             <Vote points={props.points} />
           </td>
           <td className="post">
@@ -52,7 +52,7 @@ const Card = props => {
               {props.latest_major_action_date} |
               <span
                 className="hide"
-                onClick={() => setIsVisible(prev => !prev)}
+                onClick={() => setIsVisible((prev) => !prev)}
               >
                 hide
               </span>

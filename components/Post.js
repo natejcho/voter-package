@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import Comment from "./Comment";
 import Vote from "./Vote";
 
 const Styled = styled.div`
@@ -6,9 +7,10 @@ const Styled = styled.div`
   flex-direction: column;
 `;
 
-const Post = props => {
+const Post = (props) => {
   return (
     <Styled>
+      <Vote />
       <span>{props.short_title}</span>
       <span>{props.title}</span>
       <span>{props.bill}</span>
@@ -24,6 +26,7 @@ const Post = props => {
       <span>{props.summary}</span>
       <span>{props.summary_short}</span>
       <span>votes: {props.votes.length}</span>
+      <Comment postId={props.bill_id} />
     </Styled>
   );
 };
