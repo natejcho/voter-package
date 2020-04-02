@@ -23,13 +23,6 @@ const getComment = async (req, res) => {
     console.log("Error getting comments", error);
     res.json({ error });
   }
-  // db.collection('comments').doc(id).get()
-  //   .then((doc) => {
-  // })
-  // .catch((error) => {
-  //   console.log('Error getting comments', error);
-  //   res.json({ error })
-  // });
 };
 
 export default getComment;

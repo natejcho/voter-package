@@ -1,9 +1,5 @@
-// import fetch from "isomorphic-unfetch";
 import useSWR from "swr";
-
-function fetcher(url) {
-  return fetch(url).then((r) => r.json());
-}
+import { fetcher } from "../utils/utils";
 
 function Comment(props) {
   let { data, error } = useSWR(
