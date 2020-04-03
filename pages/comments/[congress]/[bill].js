@@ -4,10 +4,9 @@ import Layout from "../../../components/Layout";
 import Post from "../../../components/Post";
 import Vote from "../../../components/Vote";
 
-function Comments({ bill }) {
+function Bill({ bill }) {
   return (
     <Layout>
-      <Vote points={Math.floor(Math.random() * 100)} />
       <Post {...bill}></Post>
     </Layout>
   );
@@ -31,4 +30,4 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-export default Comments;
+export default Bill;

@@ -8,7 +8,10 @@ Layout.propTypes = {
 
 const Styled = styled.div`
   background-color: #ffffff;
+  color: #333;
   display:flex;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
   justify-content: center;
 
   #body {

@@ -1,12 +1,12 @@
 import db from "../../lib/db";
 
 const getComment = async (req, res) => {
-  const { post_id } = req.query;
-  console.log("getting comments for " + post_id);
+  const { id } = req.query;
+  console.log("getting comments for " + id);
   try {
-    const doc = await db.collection("comments").doc(post_id).get();
+    const doc = await db.collection("comments").doc(id).get();
     if (!doc.exists) {
-      await db.collection("comments").doc(post_id).set(
+      await db.collection("comments").doc(id).set(
         {
           children: [],
           value: "",

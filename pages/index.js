@@ -6,16 +6,16 @@ import Layout from "../components/Layout";
 function Index(props) {
   return (
     <Layout>
-      <span>Chamber: {props.recentBills[0].chamber}</span>
+      <span>Chamber: {props.proPublicaBills.chamber}</span>
       <table>
         <tbody>
-          {props.recentBills[0].bills.map((card, index) => (
+          {props.recentBills.arr.map((id, index) => (
             <Card
-              {...card}
+              {...props.recentBills.billsMap[id]}
               key={card.bill_id}
               index={index + 1}
               comments={[]}
-              congress={props.recentBills[0].congress}
+              congress={props.proPublicaBills.congress}
               points={Math.floor(Math.random() * 100)}
             />
           ))}
@@ -25,17 +25,41 @@ function Index(props) {
   );
 }
 
-export async function getServerSideProps() {
+// TODO: we need a job that runs to update server with propublica bills
+export async function getServerSideProps(context) {
   const res = await fetch(INTRODUCED_BILLS_URL, {
-    method: "get",
+    method: "GET",
     mode: "cors",
     headers: {
       "X-API-Key": process.env.PROPUBLICA_API_KEY,
     },
   });
   const data = await res.json();
+  const proPublicaBills = data.results[0];
+
+  const {
+    req: {
+      headers: {
+        "x-forwarded-host": host = "",
+        "x-forwarded-proto": proto = "",
+      } = {},
+    } = {},
+  } = context;
+  const uri = proto && host ? `${proto}://${host}` : "";
+  const postsRes = await fetch(`${uri}/api/pages`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      bills: proPublicaBills.bills,
+    }),
+  });
+  const postsData = await postsRes.json();
+  const recentBills = postsData.results[0];
+
   return {
-    props: { recentBills: data.results },
+    props: { recentBills, proPublicaBills },
   };
 }
 
