@@ -50,7 +50,7 @@ const Post = (props) => {
       </div>
       <textarea name="text" rows="6" cols="60" value={comment} onChange={(e) => setComment(e.target.value)} />
       <button onClick={createNewComment}>Submit new comment</button>
-      <Comment postId={props.bill_id} />
+      <Comment id={props.bill_id} />
     </Styled>
   );
 };
