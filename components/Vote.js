@@ -25,9 +25,9 @@ function Vote(props) {
     if (props.onUpvote) {
       props.onUpvote();
     }
-    setIsClicked((prev) => !prev)
-    setVotes(prev => prev + 1);
-  }
+    setIsClicked((prev) => !prev);
+    setVotes((prev) => prev + 1);
+  };
 
   return (
     <Styled isClicked={isClicked}>
@@ -38,7 +38,5 @@ function Vote(props) {
     </Styled>
   );
 }
-
-
 
 export default Vote;

@@ -1,4 +1,4 @@
-import { FieldValue } from '@google-cloud/firestore';
+import { FieldValue } from "@google-cloud/firestore";
 import db from "../../lib/db";
 
 export default async (req, res) => {
@@ -18,7 +18,7 @@ export default async (req, res) => {
   } catch (error) {
     console.error(error.message);
     res.statusCode = 500;
-    res.setHeader('Content-Type', 'application/json')
-    res.end(JSON.stringify({ error }))
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify({ error }));
   }
 };

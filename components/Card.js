@@ -41,8 +41,8 @@ const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
 
   const onUpvote = async () => {
-    await fetch('/api/upvote/' + props.bill_id);
-  }
+    await fetch("/api/upvote/" + props.bill_id);
+  };
 
   return (
     <Styled>
