@@ -6,6 +6,9 @@ const Styled = styled.div`
   .votes {
     font-size: 10pt;
   }
+  button {
+    display: contents;
+  }
   svg {
     cursor: pointer;
     fill: ${(props) => (props.isClicked ? "black" : "#9b9b9b")};
@@ -16,12 +19,26 @@ const Styled = styled.div`
 
 function Vote(props) {
   const [isClicked, setIsClicked] = React.useState(false);
+  const [votes, setVotes] = React.useState(props.votes);
+
+  const handleClick = () => {
+    if (props.onUpvote) {
+      props.onUpvote();
+    }
+    setIsClicked((prev) => !prev)
+    setVotes(prev => prev + 1);
+  }
+
   return (
     <Styled isClicked={isClicked}>
-      <GoArrowUp onClick={() => setIsClicked((prev) => !prev)} />
-      <span className="votes">{props.votes}</span>
+      <button onClick={handleClick}>
+        <GoArrowUp />
+      </button>
+      <span className="votes">{votes}</span>
     </Styled>
   );
 }
+
+
 
 export default Vote;

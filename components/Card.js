@@ -39,13 +39,18 @@ const Styled = styled.tr`
 
 const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
+
+  const onUpvote = async () => {
+    await fetch('/api/upvote/' + props.bill_id);
+  }
+
   return (
     <Styled>
       {isVisible && (
         <>
           <td className="index">{props.index}.</td>
           <td className="vote-container">
-            <Vote votes={props.votes} />
+            <Vote votes={props.votes} onUpvote={onUpvote} />
           </td>
           <td className="post">
             <Link href={`/comments/${props.congress}/${props.bill_slug}`}>

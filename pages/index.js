@@ -1,15 +1,17 @@
 import fetch from "isomorphic-unfetch";
-import useSWR from "swr";
-import { INTRODUCED_BILLS_URL } from "../utils/constants";
-import { fetcher } from "../utils/utils";
+// import useSWR from "swr";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
+import db from "../lib/db";
+import { INTRODUCED_BILLS_URL } from "../utils/constants";
+// import { fetcher } from "../utils/utils";
 
 function Index(props) {
-  let { data } = useSWR(
-    "/api/posts",
-    fetcher
-  );
+  // let { data } = useSWR(
+  //   "/api/posts",
+  //   fetcher
+  // );
+  // console.log(data);
   return (
     <Layout>
       <span>Chamber: {props.recentBills[0].chamber}</span>
@@ -20,9 +22,9 @@ function Index(props) {
               {...card}
               key={card.bill_id}
               index={index + 1}
-              comments={data.billsMap[card.bill_id].comments}
+              comments={props.billsMap[card.bill_id].comments}
               congress={props.recentBills[0].congress}
-              votes={data.billsMap[card.bill_id].votes}
+              votes={props.billsMap[card.bill_id].votes}
             />
           ))}
         </tbody>
@@ -40,8 +42,18 @@ export async function getServerSideProps() {
     },
   });
   const data = await res.json();
+  const snapshot = await db.collection("posts").get();
+  const billsMap = {};
+  snapshot.forEach((doc) => {
+    billsMap[doc.id] = {
+      ...doc.data(),
+    };
+  });
   return {
-    props: { recentBills: data.results },
+    props: {
+      recentBills: data.results,
+      billsMap,
+    },
   };
 }
 
