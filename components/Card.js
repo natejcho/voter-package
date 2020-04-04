@@ -41,7 +41,7 @@ const Card = (props) => {
         <>
           <td className="index">{props.index}.</td>
           <td style={{ verticalAlign: "top" }}>
-            <Vote points={props.points} />
+            <Vote points={props.votes} />
           </td>
           <td className="post">
             <Link href={`/comments/${props.congress}/${props.bill_slug}`}>
