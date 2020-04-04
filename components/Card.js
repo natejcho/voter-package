@@ -31,6 +31,10 @@ const Styled = styled.tr`
       font-size: 13pt;
     }
   }
+
+  .vote-container {
+    vertical-align: top;
+  }
 `;
 
 const Card = (props) => {
@@ -40,8 +44,8 @@ const Card = (props) => {
       {isVisible && (
         <>
           <td className="index">{props.index}.</td>
-          <td style={{ verticalAlign: "top" }}>
-            <Vote points={props.points} />
+          <td className="vote-container">
+            <Vote votes={props.votes} />
           </td>
           <td className="post">
             <Link href={`/comments/${props.congress}/${props.bill_slug}`}>

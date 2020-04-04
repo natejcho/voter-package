@@ -1,9 +1,15 @@
 import fetch from "isomorphic-unfetch";
+import useSWR from "swr";
 import { INTRODUCED_BILLS_URL } from "../utils/constants";
+import { fetcher } from "../utils/utils";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
 
 function Index(props) {
+  let { data } = useSWR(
+    "/api/posts",
+    fetcher
+  );
   return (
     <Layout>
       <span>Chamber: {props.recentBills[0].chamber}</span>
@@ -14,9 +20,9 @@ function Index(props) {
               {...card}
               key={card.bill_id}
               index={index + 1}
-              comments={[]}
+              comments={data.billsMap[card.bill_id].comments}
               congress={props.recentBills[0].congress}
-              points={Math.floor(Math.random() * 100)}
+              votes={data.billsMap[card.bill_id].votes}
             />
           ))}
         </tbody>

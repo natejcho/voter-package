@@ -7,7 +7,7 @@ import Vote from "../../../components/Vote";
 function Comments({ bill }) {
   return (
     <Layout>
-      <Vote points={Math.floor(Math.random() * 100)} />
+      <Vote votes={Math.floor(Math.random() * 100)} />
       <Post {...bill}></Post>
     </Layout>
   );

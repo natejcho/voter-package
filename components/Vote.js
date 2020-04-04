@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { GoArrowUp } from "react-icons/go";
 
 const Styled = styled.div`
-  .points {
+  .votes {
     font-size: 10pt;
   }
   svg {
@@ -19,7 +19,7 @@ function Vote(props) {
   return (
     <Styled isClicked={isClicked}>
       <GoArrowUp onClick={() => setIsClicked((prev) => !prev)} />
-      <span className="points">{props.points}</span>
+      <span className="votes">{props.votes}</span>
     </Styled>
   );
 }
