@@ -19,15 +19,13 @@ const Styled = styled.div`
   }
 `;
 
-
 const Comment = (props) => {
-
   const { data, error } = useSWR(
     "/api/comments?comment_id=" + props.id,
     fetcher
   );
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
   // const updateComment = () => {
   //   fetch("/api/updateComment", {
@@ -42,8 +40,6 @@ const Comment = (props) => {
   //   });
   // };
 
-  console.log(data);
-
   return (
     <Styled>
       <Vote points={data.votes} />
@@ -55,15 +51,13 @@ const Comment = (props) => {
         </div>
         <span className="the-stuff">{data.value}</span>
         <div className="children">
-          {data.children
-            // .sort((a, b) => temp[a].votes - temp[b].votes)
-            .map((id) => (
-              <Comment key={id} id={id} />
-            ))}
+          {data.children.map((id) => (
+            <Comment key={id} id={id} />
+          ))}
         </div>
       </div>
     </Styled>
   );
-}
+};
 
 export default Comment;

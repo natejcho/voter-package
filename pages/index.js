@@ -53,7 +53,7 @@ export async function getServerSideProps() {
   recentBills.bills.forEach((b) => {
     if (!billsMap[b.bill_id]) {
       // TODO: i want to fire these off in a batch async
-      console.log('creating document for post: ' + b.bill_id);
+      console.log("creating document for post: " + b.bill_id);
       billsMap[b.bill_id] = {
         comments: [],
         votes: 0,
@@ -61,7 +61,9 @@ export async function getServerSideProps() {
         moderateVotes: 0,
         rightVotes: 0,
       };
-      db.collection("posts").doc(b.bill_id).set(billsMap[b.bill_id], { merge: true });
+      db.collection("posts")
+        .doc(b.bill_id)
+        .set(billsMap[b.bill_id], { merge: true });
     }
   });
   return {

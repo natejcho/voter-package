@@ -1,4 +1,7 @@
+import useSWR from "swr";
+import { useRouter } from 'next/router'
 import styled from "@emotion/styled";
+import { fetcher } from "../utils/utils";
 import Comment from "./Comment";
 import Vote from "./Vote";
 
@@ -12,10 +15,15 @@ const Styled = styled.div`
 `;
 
 const Post = (props) => {
-  const [comment, setComment] = React.useState('');
+  const router = useRouter()
+  const [comment, setComment] = React.useState("");
+  const { data, error } = useSWR(
+    "/api/comments?comment_id=" + props.bill_id,
+    fetcher
+  );
 
-  const createNewComment = () => {
-    fetch("/api/comments", {
+  const createNewComment = async () => {
+    await fetch("/api/comments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,6 +33,7 @@ const Post = (props) => {
         value: comment,
       }),
     });
+    router.push(`/bill/${props.congress}/${props.bill_slug}`)
   };
   return (
     <Styled>
@@ -48,9 +57,19 @@ const Post = (props) => {
           <p>votes: {props.votes.length}</p>
         </div>
       </div>
-      <textarea name="text" rows="6" cols="60" value={comment} onChange={(e) => setComment(e.target.value)} />
+      <textarea
+        name="text"
+        rows="6"
+        cols="60"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+      />
       <button onClick={createNewComment}>Submit new comment</button>
-      <Comment id={props.bill_id} />
+      <div className="comment-section">
+        {(error && <div>failed to load</div>) ||
+          (!data && <div>loading...</div>) ||
+          data.children.map((id) => <Comment key={id} id={id} />)}
+      </div>
     </Styled>
   );
 };

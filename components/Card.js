@@ -50,10 +50,10 @@ const Card = (props) => {
         <>
           <td className="index">{props.index}.</td>
           <td className="vote-container">
-            <Vote votes={props.votes} onUpvote={onUpvote} />
+            <Vote votes={props.votes} onUpvote={onUpvote} showPoints />
           </td>
           <td className="post">
-            <Link href={`/comments/${props.congress}/${props.bill_slug}`}>
+            <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
               <span className="title comments">{props.short_title}</span>
             </Link>
             <div className="details">

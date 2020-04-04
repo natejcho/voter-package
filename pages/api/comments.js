@@ -6,26 +6,24 @@ export default async (req, res) => {
   switch (req.method) {
     case "GET":
       const { comment_id } = req.query;
-      console.log("getting comments for " + comment_id);
+      console.log("getting comment for " + comment_id);
       try {
         const doc = await db.collection("comments").doc(comment_id).get();
         if (doc.exists) {
           return res.status(200).json(doc.data());
+        } else {
+          const data = {
+            children: [],
+            value: "",
+            parentId: null,
+            votes: 0,
+            leftVotes: 0,
+            moderateVotes: 0,
+            rightVotes: 0,
+          };
+          db.collection("comments").doc(comment_id).set(data, { merge: true });
+          return res.status(200).json({ data });
         }
-        // await db.collection("comments").doc(comment_id).set(
-        //   {
-        //     children: [],
-        //     value: "",
-        //     parentId: null,
-        //     votes: 0,
-        //     leftVotes: 0,
-        //     moderateVotes: 0,
-        //     rightVotes: 0,
-        //   },
-        //   { merge: true }
-        // );
-        // good idea but this has potential to wrack up a huge bill
-        // await getComment(req, res);
       } catch (error) {
         console.log(error.message);
         return res.json({ error });
@@ -40,9 +38,12 @@ export default async (req, res) => {
           db
             .collection("comments")
             .doc(postId)
-            .set({
-              children: FieldValue.arrayUnion(newCommentId),
-            }, { merge: true }),
+            .set(
+              {
+                children: FieldValue.arrayUnion(newCommentId),
+              },
+              { merge: true }
+            ),
           db.collection("comments").doc(newCommentId).set(
             {
               children: [],
