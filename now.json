@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "env": {
+    "PROPUBLICA_API_KEY": "@propublica_api_key",
+    "FIREBASE_SECRET": "@firebase-secret"
+  },
+  "build": {
+    "env": {
+      "PROPUBLICA_API_KEY": "@propublica_api_key",
+      "FIREBASE_SECRET": "@firebase-secret"
+    }
+  }
+}

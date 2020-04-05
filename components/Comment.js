@@ -1,35 +1,64 @@
+import styled from "@emotion/styled";
 import useSWR from "swr";
-import { fetcher } from "../utils/utils";
+import { fetcher, useUpvote } from "../utils/utils";
+import Vote from "./Vote";
 
-function Comment(props) {
-  let { data, error } = useSWR(
-    "/api/comments?post_id=" + props.postId,
+const Styled = styled.div`
+  display: flex;
+  .children {
+    margin: 14px 16px 8px 23px;
+  }
+  .info {
+    font-size: 10pt;
+    span {
+      margin-left: 0.5rem;
+    }
+    .total-votes {
+      font-weight: bold;
+    }
+  }
+`;
+
+const Comment = (props) => {
+  const onUpvote = useUpvote("comment", props.id);
+  const { data, error } = useSWR(
+    "/api/comments?comment_id=" + props.id,
     fetcher
   );
-  console.error(error);
-  data = data || "";
-  const [comment, setComment] = React.useState(data.value);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <div>loading...</div>;
 
-  const updateComment = () => {
-    fetch("/api/updateComment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        commentId: props.postId,
-        value: comment,
-      }),
-    });
-  };
+  // const updateComment = () => {
+  //   fetch("/api/updateComment", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       commentId: props.postId,
+  //       value: comment,
+  //     }),
+  //   });
+  // };
 
   return (
-    <>
-      <span>Comments</span>
-      <input onChange={(e) => setComment(e.target.value)} value={comment} />
-      <button onClick={updateComment}>Update</button>
-    </>
+    <Styled>
+      <Vote votes={data.votes} onUpvote={onUpvote} />
+      <div>
+        <div className="info">
+          <a className="user">{data.user || "Luke Skywalker"}</a>
+          <span className="total-votes">{data.votes} votes</span>
+          <span className="hide">[-]</span>
+        </div>
+        <span className="the-stuff">{data.value}</span>
+        <div className="children">
+          {data.children.map((id) => (
+            <Comment key={id} id={id} />
+          ))}
+        </div>
+      </div>
+    </Styled>
   );
-}
+};
 
 export default Comment;

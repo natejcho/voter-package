@@ -8,20 +8,15 @@ Layout.propTypes = {
 
 const Styled = styled.div`
   background-color: #ffffff;
-  display:flex;
-  justify-content: center;
-
-  #body {
-    width 85%;
-  }
+  color: #333;
+  font-family: Verdana, Geneva, sans-serif;
+  font-size: 10pt;
 `;
 function Layout(props) {
   return (
     <Styled>
-      <div id="body">
-        <Header />
-        {props.children}
-      </div>
+      <Header />
+      {props.children}
     </Styled>
   );
 }

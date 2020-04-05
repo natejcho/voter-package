@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`
@@ -31,20 +32,30 @@ const Styled = styled.tr`
       font-size: 13pt;
     }
   }
+
+  .vote-container {
+    vertical-align: top;
+  }
 `;
 
 const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
+  const onUpvote = useUpvote("post", props.bill_id);
+
+  // const onUpvote = async () => {
+  //   await fetch("/api/upvote?post_id=" + props.bill_id);
+  // };
+
   return (
     <Styled>
       {isVisible && (
         <>
           <td className="index">{props.index}.</td>
-          <td style={{ verticalAlign: "top" }}>
-            <Vote points={props.points} />
+          <td className="vote-container">
+            <Vote votes={props.votes} onUpvote={onUpvote} showPoints />
           </td>
           <td className="post">
-            <Link href={`/comments/${props.congress}/${props.bill_slug}`}>
+            <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
               <span className="title comments">{props.short_title}</span>
             </Link>
             <div className="details">
