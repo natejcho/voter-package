@@ -11,7 +11,6 @@ const Styled = styled.div`
   color: #333;
   font-family: Verdana, Geneva, sans-serif;
   font-size: 10pt;
-
 `;
 function Layout(props) {
   return (

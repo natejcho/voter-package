@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import { useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`
@@ -39,10 +40,11 @@ const Styled = styled.tr`
 
 const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
+  const onUpvote = useUpvote("post", props.bill_id);
 
-  const onUpvote = async () => {
-    await fetch("/api/upvote/" + props.bill_id);
-  };
+  // const onUpvote = async () => {
+  //   await fetch("/api/upvote?post_id=" + props.bill_id);
+  // };
 
   return (
     <Styled>

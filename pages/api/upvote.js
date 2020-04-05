@@ -2,14 +2,13 @@ import { FieldValue } from "@google-cloud/firestore";
 import db from "../../lib/db";
 
 export default async (req, res) => {
-  const { post_id, comment_id } = req.query.parse();
-  // console.log(req.query);
+  const { post_id, comment_id } = req.query;
   try {
     let doc;
     if (post_id) {
       doc = db.collection("posts").doc(post_id);
     } else if (comment_id) {
-      doc = db.collection("posts").doc(comment_id);
+      doc = db.collection("comments").doc(comment_id);
     }
     await doc.set({ votes: FieldValue.increment(1) }, { merge: true });
 

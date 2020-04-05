@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import useSWR from "swr";
-import { fetcher } from "../utils/utils";
+import { fetcher, useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.div`
@@ -20,6 +20,7 @@ const Styled = styled.div`
 `;
 
 const Comment = (props) => {
+  const onUpvote = useUpvote("comment", props.id);
   const { data, error } = useSWR(
     "/api/comments?comment_id=" + props.id,
     fetcher
@@ -42,7 +43,7 @@ const Comment = (props) => {
 
   return (
     <Styled>
-      <Vote points={data.votes} />
+      <Vote votes={data.votes} onUpvote={onUpvote} />
       <div>
         <div className="info">
           <a className="user">{data.user || "Luke Skywalker"}</a>

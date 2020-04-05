@@ -34,16 +34,19 @@ function Index(props) {
 }
 
 export async function getServerSideProps() {
-  const res = await fetch(INTRODUCED_BILLS_URL, {
-    method: "get",
-    mode: "cors",
-    headers: {
-      "X-API-Key": process.env.PROPUBLICA_API_KEY,
-    },
-  });
-  const data = await res.json();
-  const recentBills = data.results[0];
-  const snapshot = await db.collection("posts").get();
+  const [recentBills, snapshot] = await Promise.all([
+    fetch(INTRODUCED_BILLS_URL, {
+      method: "get",
+      mode: "cors",
+      headers: {
+        "X-API-Key": process.env.PROPUBLICA_API_KEY,
+      },
+    }).then(async (res) => {
+      const data = await res.json();
+      return data.results[0];
+    }),
+    db.collection("posts").get(),
+  ]);
   const billsMap = {};
   snapshot.forEach((doc) => {
     billsMap[doc.id] = {
