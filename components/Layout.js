@@ -7,9 +7,10 @@ Layout.propTypes = {
 };
 
 const Styled = styled.div`
-  background-color: #ffffff;
+  // background-color: #fdfdfd;
+  background-color: #fff;
   color: #333;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: Verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
 `;
 function Layout(props) {

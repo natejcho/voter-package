@@ -4,9 +4,24 @@ import { useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`
+> td {
+
+  border-top: 1px solid #F6F7F8; 
+  padding-top: 5px;
+}
+
   .index {
     display: flex;
     justify-content: flex-end;
+  }
+
+  &:active,
+  &:focus-within,
+  &:hover {
+    .post {
+      background-color: #f0f3fc;
+      border-right: 2px solid #BBDEFB;
+    }
   }
 
   .post {
@@ -15,12 +30,18 @@ const Styled = styled.tr`
 
     .comments {
       cursor: pointer;
+      background-color: #eef1f5;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-weight: bold;
+    padding: 0 0 2px 0;
     }
 
     .details {
-      color: ##828282;
+      background-color: #f6f7f8;
+      color: #444;
       font-size: 10pt;
-      margin-left: 5px;
+      margin: 9px 0 0 5px;
 
       .hide {
         cursor: pointer;
@@ -28,8 +49,9 @@ const Styled = styled.tr`
     }
 
     .title {
-      color: ${(props) => (props.visited ? "#828282" : "#000")};
-      font-size: 13pt;
+      color: ${(props) => (props.visited ? "#551a8b" : "#0000ff")};
+      font-size: medium;
+      cursor: pointer;
     }
   }
 
@@ -50,29 +72,28 @@ const Card = (props) => {
     <Styled>
       {isVisible && (
         <>
-          <td className="index">{props.index}.</td>
+          {false && <td className="index">{props.index}.</td>}
           <td className="vote-container">
             <Vote votes={props.votes} onUpvote={onUpvote} showPoints />
           </td>
           <td className="post">
             <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
-              <span className="title comments">{props.short_title}</span>
+              <span className="title">{props.short_title}</span>
             </Link>
             <div className="details">
-              sponsor: {props.sponsor_name} | latest major action:{" "}
+              <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
+                <span className="comments">
+                  {props.comments.length} comments
+                </span>
+              </Link>
+              | sponsor: {props.sponsor_name} | latest major action:{" "}
               {props.latest_major_action_date} |
               <span
                 className="hide"
                 onClick={() => setIsVisible((prev) => !prev)}
               >
-                hide
+                {' '}hide
               </span>
-              |
-              <Link href={`/comments/${props.congress}/${props.bill_slug}`}>
-                <span className="comments">
-                  {props.comments.length} comments
-                </span>
-              </Link>
             </div>
           </td>
         </>

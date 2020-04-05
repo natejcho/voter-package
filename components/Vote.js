@@ -7,6 +7,8 @@ const Styled = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 5px;
+  width: 35px;
+
   svg {
     cursor: pointer;
     height: 1.2rem;

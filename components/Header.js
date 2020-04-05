@@ -2,7 +2,8 @@ import styled from "@emotion/styled";
 import Link from "next/link";
 
 const Styled = styled.header`
-  background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+  // background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
+  background-color: #5772ff;
   color: #fff;
   height: 24px;
   display: flex;
