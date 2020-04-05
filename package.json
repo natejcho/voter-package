@@ -5,9 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start",
+    "dev": "NODE_ENV=development next",
+    "build": "NODE_ENV=production next build",
+    "start": "NODE_ENV=production next start",
     "format": "prettier --write '{components,pages,lib,utils}/**/*.js'"
   },
   "dependencies": {
@@ -16,8 +16,10 @@
     "@google-cloud/firestore": "^3.7.3",
     "apollo-server-micro": "^2.11.0",
     "firebase-admin": "^8.10.0",
+    "global": "^4.4.0",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.4",
+    "now": "^17.1.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.9.0",
@@ -26,6 +28,7 @@
   },
   "devDependencies": {
     "babel-plugin-emotion": "^10.0.29",
+    "dotenv-webpack": "^1.7.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
