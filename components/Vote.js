@@ -46,6 +46,20 @@ function Vote(props) {
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
   };
+  const handleLeftUpvote = async () => {
+    if (props.onUpvote) {
+      await props.onUpvote("left");
+    }
+    setIsClicked((prev) => !prev);
+    setVotes((prev) => prev + 1);
+  };
+  const handleRightUpvote = async () => {
+    if (props.onUpvote) {
+      await props.onUpvote("right");
+    }
+    setIsClicked((prev) => !prev);
+    setVotes((prev) => prev + 1);
+  };
 
   return (
     <Styled isClicked={isClicked}>
@@ -53,8 +67,8 @@ function Vote(props) {
       {props.showPoints && <span className="points">{votes}</span>}
       {!props.showPoints && (
         <div>
-          <GoArrowUp className="left-arrow" onClick={handleClick} />
-          <GoArrowUp className="right-arrow" onClick={handleClick} />
+          <GoArrowUp className="left-arrow" onClick={handleLeftUpvote} />
+          <GoArrowUp className="right-arrow" onClick={handleRightUpvote} />
         </div>
       )}
     </Styled>

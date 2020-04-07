@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Auth from "./Auth";
 import Header from "./Header";
 import styled from "@emotion/styled";
 
@@ -14,9 +15,12 @@ const Styled = styled.div`
   font-size: 10pt;
 `;
 function Layout(props) {
+  const [isLoginOpen, setIsLoginOpen] = React.useState(false);
+
   return (
     <Styled>
-      <Header />
+      <Header openLogin={() => setIsLoginOpen(true)} />
+      {isLoginOpen && <Auth isLoginOpen={isLoginOpen} closeLogin={() => setIsLoginOpen(false)} />}
       {props.children}
     </Styled>
   );

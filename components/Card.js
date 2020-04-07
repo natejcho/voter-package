@@ -4,11 +4,10 @@ import { useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`
-> td {
-
-  border-top: 1px solid #F6F7F8; 
-  padding-top: 5px;
-}
+  > td {
+    border-top: 1px solid #f6f7f8;
+    padding-top: 5px;
+  }
 
   .index {
     display: flex;
@@ -20,7 +19,7 @@ const Styled = styled.tr`
   &:hover {
     .post {
       background-color: #f0f3fc;
-      border-right: 2px solid #BBDEFB;
+      border-right: 2px solid #bbdefb;
     }
   }
 
@@ -31,10 +30,10 @@ const Styled = styled.tr`
     .comments {
       cursor: pointer;
       background-color: #eef1f5;
-    padding-left: 10px;
-    padding-right: 10px;
-    font-weight: bold;
-    padding: 0 0 2px 0;
+      padding-left: 10px;
+      padding-right: 10px;
+      font-weight: bold;
+      padding: 0 0 2px 0;
     }
 
     .details {
@@ -92,7 +91,8 @@ const Card = (props) => {
                 className="hide"
                 onClick={() => setIsVisible((prev) => !prev)}
               >
-                {' '}hide
+                {" "}
+                hide
               </span>
             </div>
           </td>
