@@ -10,7 +10,7 @@ const Styled = styled.header`
   // background-image: linear-gradient(#54b4eb, #2fa4e7 60%, #1d9ce5);
   background-color: #5772ff;
   color: #fff;
-  height: 24px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;

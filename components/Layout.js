@@ -9,7 +9,7 @@ Layout.propTypes = {
 
 const Styled = styled.div`
   // background-color: #fdfdfd;
-  background-color: #fff;
+  // background-color: #fff;
   color: #333;
   font-family: Verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
@@ -20,7 +20,12 @@ function Layout(props) {
   return (
     <Styled>
       <Header openLogin={() => setIsLoginOpen(true)} />
-      {isLoginOpen && <Auth isLoginOpen={isLoginOpen} closeLogin={() => setIsLoginOpen(false)} />}
+      {isLoginOpen && (
+        <Auth
+          isLoginOpen={isLoginOpen}
+          closeLogin={() => setIsLoginOpen(false)}
+        />
+      )}
       {props.children}
     </Styled>
   );

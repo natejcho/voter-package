@@ -71,19 +71,30 @@ const Styled = styled.div`
       img {
         height: 60pt;
         width: 60pt;
+        background: #5772ff;
+        border-radius: 45px;
       }
       .login-input {
         background-color: #fcfcfb;
         border-radius: 4px;
         border: 1px solid rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
-        font-size: 14px;
+        font-size: 10.5pt;
         font-weight: 400;
         height: 48px;
         line-height: 21px;
         overflow: visible;
         padding: 22px 12px 10px;
         transition: all 0.2s ease-in-out;
+
+        &:hover::-webkit-input-placeholder ,
+        &:focus::-webkit-input-placeholder {
+          -webkit-transition: all 0.35s ease-in-out;
+          font-size: 8pt;
+          font-weight 500;
+          transform: translateX(-1%) translateY(-150%);
+          transition: all 0.35s ease-in-out;
+      }
       }
       .other-options {
         font-size: 12px;
@@ -114,6 +125,14 @@ const Styled = styled.div`
       top: 0;
       width: 1.5rem;
     }
+    .this-might-be-something-later {
+      background-color: #5772ff;
+      background-image: linear-gradient(#7e93ff,#6b82ff 60%,#5772ff);
+      background-repeat: no-repeat;
+      filter: none;
+      box-shadow: 0 1px 10px rgba(0,0,0,0.1);
+      height: 100%;
+    }
   }
 `;
 
@@ -121,20 +140,20 @@ function Auth(props) {
   return (
     <Styled>
       <div id="snatch-em-up">
-        <span></span>
+        <span className="this-might-be-something-later"></span>
         <form>
           <img src="/favicon.ico" />
           <h1>Sign in</h1>
           <input
             id="login-username"
             className="login-input"
-            placeholder="Username"
+            placeholder="USERNAME"
             type="text"
           ></input>
           <input
             id="login-password"
             className="login-input"
-            placeholder="Password"
+            placeholder="PASSWORD"
             type="password"
           ></input>
           <button>SIGN IN</button>

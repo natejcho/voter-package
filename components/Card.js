@@ -5,7 +5,7 @@ import Vote from "./Vote";
 
 const Styled = styled.tr`
   > td {
-    border-top: 1px solid #f6f7f8;
+    // border-top: 1px solid #f6f7f8;
     padding-top: 5px;
   }
 
@@ -24,23 +24,24 @@ const Styled = styled.tr`
   }
 
   .post {
+    background-color: #fff;
+    border: 1px solid #eef1f5;
+    border-radius: 3px;
     display: flex;
     flex-direction: column;
 
     .comments {
       cursor: pointer;
-      background-color: #eef1f5;
       padding-left: 10px;
       padding-right: 10px;
       font-weight: bold;
-      padding: 0 0 2px 0;
     }
 
     .details {
       background-color: #f6f7f8;
       color: #444;
       font-size: 10pt;
-      margin: 9px 0 0 5px;
+      margin-top: 9px;
 
       .hide {
         cursor: pointer;

@@ -6,8 +6,8 @@ const Styled = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-right: 5px;
-  width: 35px;
+  margin-right: 12px;
+  width: 20px;
 
   svg {
     cursor: pointer;
@@ -17,7 +17,7 @@ const Styled = styled.div`
   }
   .arrow {
     fill: ${(props) => (props.isClicked ? "#616161" : "#fff")};
-    stroke: #828282;
+    stroke: #444;
     stroke-width: 1px;
   }
   .left-arrow {
