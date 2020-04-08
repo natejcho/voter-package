@@ -6,7 +6,9 @@ const Styled = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin-right: 5px;
+  margin-right: 12px;
+  width: 20px;
+
   svg {
     cursor: pointer;
     height: 1.2rem;
@@ -15,7 +17,7 @@ const Styled = styled.div`
   }
   .arrow {
     fill: ${(props) => (props.isClicked ? "#616161" : "#fff")};
-    stroke: #828282;
+    stroke: #444;
     stroke-width: 1px;
   }
   .left-arrow {
@@ -44,6 +46,20 @@ function Vote(props) {
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
   };
+  const handleLeftUpvote = async () => {
+    if (props.onUpvote) {
+      await props.onUpvote("left");
+    }
+    setIsClicked((prev) => !prev);
+    setVotes((prev) => prev + 1);
+  };
+  const handleRightUpvote = async () => {
+    if (props.onUpvote) {
+      await props.onUpvote("right");
+    }
+    setIsClicked((prev) => !prev);
+    setVotes((prev) => prev + 1);
+  };
 
   return (
     <Styled isClicked={isClicked}>
@@ -51,8 +67,8 @@ function Vote(props) {
       {props.showPoints && <span className="points">{votes}</span>}
       {!props.showPoints && (
         <div>
-          <GoArrowUp className="left-arrow" onClick={handleClick} />
-          <GoArrowUp className="right-arrow" onClick={handleClick} />
+          <GoArrowUp className="left-arrow" onClick={handleLeftUpvote} />
+          <GoArrowUp className="right-arrow" onClick={handleRightUpvote} />
         </div>
       )}
     </Styled>

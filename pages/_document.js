@@ -12,7 +12,14 @@ class MyDocument extends Document {
         <Head>
           <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
         </Head>
-        <body style={{ width: "85%", margin: "auto" }}>
+        <body
+          style={{
+            width: "80%",
+            margin: "auto",
+            backgroundColor: "#e9ebee",
+            paddingRight: "1rem",
+          }}
+        >
           <Main />
           <NextScript />
         </body>

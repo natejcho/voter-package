@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Auth from "./Auth";
 import Header from "./Header";
 import styled from "@emotion/styled";
 
@@ -7,15 +8,24 @@ Layout.propTypes = {
 };
 
 const Styled = styled.div`
-  background-color: #ffffff;
+  // background-color: #fdfdfd;
+  // background-color: #fff;
   color: #333;
-  font-family: Verdana, Geneva, sans-serif;
+  font-family: Verdana, arial, helvetica, sans-serif;
   font-size: 10pt;
 `;
 function Layout(props) {
+  const [isLoginOpen, setIsLoginOpen] = React.useState(false);
+
   return (
     <Styled>
-      <Header />
+      <Header openLogin={() => setIsLoginOpen(true)} />
+      {isLoginOpen && (
+        <Auth
+          isLoginOpen={isLoginOpen}
+          closeLogin={() => setIsLoginOpen(false)}
+        />
+      )}
       {props.children}
     </Styled>
   );

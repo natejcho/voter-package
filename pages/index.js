@@ -1,10 +1,10 @@
+/** @jsx jsx */
+import { jsx, css } from "@emotion/core";
 import fetch from "isomorphic-unfetch";
-// import useSWR from "swr";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
 import db from "../lib/db";
 import { INTRODUCED_BILLS_URL } from "../utils/constants";
-// import { fetcher } from "../utils/utils";
 
 function Index(props) {
   // let { data } = useSWR(
@@ -15,7 +15,12 @@ function Index(props) {
   return (
     <Layout>
       <span>Chamber: {props.recentBills.chamber}</span>
-      <table>
+      <table
+        css={css`
+          border-collapse: separate;
+          border-spacing: 0 1rem;
+        `}
+      >
         <tbody>
           {props.recentBills.bills.map((card, index) => (
             <Card
