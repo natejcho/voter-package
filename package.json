@@ -1,13 +1,13 @@
 {
   "name": "voter-package",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Nathaniel Cho",
   "repository": {
     "type": "git",
     "url": "https://github.com/natejcho/voter-package.git"
   },
   "scripts": {
-    "dev": "NODE_ENV=development next",
+    "dev": "NODE_OPTIONS='--inspect' NODE_ENV=development next",
     "build": "NODE_ENV=production next build",
     "start": "NODE_ENV=production next start",
     "format": "prettier --write '{components,pages,lib,utils}/**/*.js'"

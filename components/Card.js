@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
+import PropTypes from "prop-types";
 import { useUpvote } from "../utils/utils";
 import Vote from "./Vote";
 
@@ -68,6 +69,9 @@ const Card = (props) => {
   //   await fetch("/api/upvote?post_id=" + props.bill_id);
   // };
 
+  const billRoute = "";
+  // `/bill/${props.congress}/${props.bill_slug}`;
+
   return (
     <Styled>
       {isVisible && (
@@ -77,16 +81,21 @@ const Card = (props) => {
             <Vote votes={props.votes} onUpvote={onUpvote} showPoints />
           </td>
           <td className="post">
-            <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
+            <Link href={billRoute}>
               <span className="title">{props.short_title}</span>
             </Link>
             <div className="details">
-              <Link href={`/bill/${props.congress}/${props.bill_slug}`}>
-                <span className="comments">
-                  {props.comments.length} comments
-                </span>
-              </Link>
-              | sponsor: {props.sponsor_name} | latest major action:{" "}
+              {false && (
+                <>
+                  <Link href={billRoute}>
+                    <span className="comments">
+                      {props.comments.length} comments
+                    </span>
+                  </Link>
+                  |{" "}
+                </>
+              )}
+              sponsor: {props.sponsor_name} | latest major action:{" "}
               {props.latest_major_action_date} |
               <span
                 className="hide"
@@ -101,6 +110,16 @@ const Card = (props) => {
       )}
     </Styled>
   );
+};
+
+Card.propTypes = {
+  bill_id: PropTypes.string.isRequired,
+  comments: PropTypes.array.isRequired,
+  index: PropTypes.number.isRequired,
+  latest_major_action_date: PropTypes.string.isRequired,
+  short_title: PropTypes.string.isRequired,
+  sponsor_name: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
 };
 
 export default Card;
