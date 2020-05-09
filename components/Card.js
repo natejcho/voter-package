@@ -113,7 +113,7 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  bill_id: PropTypes.number.isRequired,
+  bill_id: PropTypes.string.isRequired,
   comments: PropTypes.array.isRequired,
   index: PropTypes.number.isRequired,
   latest_major_action_date: PropTypes.string.isRequired,

@@ -5,10 +5,10 @@ import PropTypes from "prop-types";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
 
-function Ballots(props) {
+function Elections(props) {
   return (
     <Layout>
-      <span>Ballot Date: {props.electionDate}</span>
+      <span>Election Date: {props.electionDate}</span>
       <table
         css={css`
           border-collapse: separate;
@@ -17,17 +17,18 @@ function Ballots(props) {
         `}
       >
         <tbody>
-          {props.ballotMeasures.map((ballotMeasure) => {
+          {props.elections.map((election, index) => {
+            const office = election.office;
             return (
               <Card
-                bill_id="0"
+                bill_id={0}
                 comments={[]}
-                index={0}
+                index={index + 1}
                 latest_major_action_date={props.electionDate}
-                short_title={ballotMeasure.name}
+                short_title={office.name + " | " + office.type}
                 sponsor_name=""
-                key={"ballot-measure-" + ballotMeasure.id}
-                votes={0}
+                key={election.id}
+                votes={index}
               />
             );
           })}
@@ -52,31 +53,25 @@ export async function getServerSideProps() {
   );
   localBallots = await localBallots.json();
   const districts = localBallots.data.districts.map((d) => d.id).join();
-  // november election
-  const electionDate = localBallots.data.elections[1].date;
+  const electionDate = localBallots.data.elections[0].date;
   let ballotsData = await fetch(
     `https://api4.ballotpedia.org/sample_ballot_results?districts=${districts}&election_date=${electionDate}`
   );
   ballotsData = await ballotsData.json();
   return {
     props: {
-      ballotMeasures: ballotsData.data.districts.reduce(
-        (acc, { ballot_measures }) => {
-          if (ballot_measures) return acc.concat(ballot_measures);
-          return acc;
-        },
-        []
-      ),
-      pollData: ballotsData.data.poll_info[0],
+      elections: ballotsData.data.districts.reduce((acc, { races }) => {
+        if (races) return acc.concat(races);
+        return acc;
+      }, []),
       electionDate,
     },
   };
 }
 
-Ballots.propTypes = {
-  ballotMeasures: PropTypes.array.isRequired,
+Elections.propTypes = {
   electionDate: PropTypes.string.isRequired,
-  pollData: PropTypes.object.isRequired,
+  elections: PropTypes.array.isRequired,
 };
 
-export default Ballots;
+export default Elections;
