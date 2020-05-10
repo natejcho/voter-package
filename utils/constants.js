@@ -10,3 +10,10 @@ export const FORWARD_GEOCODING_API =
 // export const FORWARD_GEOCODING_API = new URL('https://us1.locationiq.com/v1/search.php');
 // const params = { key: 'pk.2d900000100f92993ea25805616c3885', q: '4142 24t st long island city, NY 11101', format: 'json' };
 // FORWARD_GEOCODING_API.search = new URLSearchParams(params).toString();
+export const UPVOTE_ENDPOINT = "/api/upvote";
+
+export const VOTE_TYPE_ENUM = {
+  LEFT: "LEFT",
+  UPVOTE: "UPVOTE",
+  RIGHT: "RIGHT",
+};

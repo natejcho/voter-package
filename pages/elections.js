@@ -4,6 +4,7 @@ import fetch from "isomorphic-unfetch";
 import PropTypes from "prop-types";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
+import { UPVOTE_ENDPOINT, VOTE_TYPE_ENUM } from "../utils/constants";
 
 function Elections(props) {
   return (
@@ -21,14 +22,27 @@ function Elections(props) {
             const office = election.office;
             return (
               <Card
-                bill_id={0}
+                bill_id="0"
                 comments={[]}
                 index={index + 1}
+                key={election.id}
                 latest_major_action_date={props.electionDate}
+                onUpvote={(type) => {
+                  fetch(UPVOTE_ENDPOINT, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      id: election.id,
+                      type,
+                      collection: "elections",
+                    }),
+                  });
+                }}
                 short_title={office.name + " | " + office.type}
                 sponsor_name=""
-                key={election.id}
-                votes={index}
+                votes={election.votes[VOTE_TYPE_ENUM.UPVOTE]}
               />
             );
           })}
@@ -44,26 +58,59 @@ export async function getServerSideProps() {
   //   //   const lat = '40.7487727';
   //   //   const long = '-73.9849336';
   //   //   return await
-  let localBallots = await fetch(
-    `https://api4.ballotpedia.org/sample_ballot_elections?lat=40.7487727&long=-73.9849336`,
-    {
-      method: "get",
-      mode: "cors",
-    }
-  );
-  localBallots = await localBallots.json();
-  const districts = localBallots.data.districts.map((d) => d.id).join();
-  const electionDate = localBallots.data.elections[0].date;
-  let ballotsData = await fetch(
-    `https://api4.ballotpedia.org/sample_ballot_results?districts=${districts}&election_date=${electionDate}`
-  );
-  ballotsData = await ballotsData.json();
+
+  const [dbData, { ballotsData, electionDate }] = await Promise.all([
+    // TODO: the host domain needs to depend on deployment
+    fetch("http://localhost:3000/api/elections", {
+      method: "GET",
+    }).then((data) => data.json()),
+    fetch(
+      `https://api4.ballotpedia.org/sample_ballot_elections?lat=40.7487727&long=-73.9849336`,
+      {
+        method: "get",
+        mode: "cors",
+      }
+    ).then(async (data) => {
+      const localBallots = await data.json();
+      const districts = localBallots.data.districts.map((d) => d.id).join();
+      const electionDate = localBallots.data.elections[0].date;
+      const ballotsData = await fetch(
+        `https://api4.ballotpedia.org/sample_ballot_results?districts=${districts}&election_date=${electionDate}`
+      ).then((data) => data.json());
+      return {
+        electionDate,
+        ballotsData,
+      };
+    }),
+  ]);
+  const elections = ballotsData.data.districts
+    .reduce((acc, { races }) => {
+      if (races)
+        return acc.concat(
+          races.map((race) => ({
+            ...race,
+            votes: dbData[race.id] || {},
+          }))
+        );
+      return acc;
+    }, [])
+    // TODO: lean on firestore to sort instead of sorting manually
+    .sort(
+      (a, b) => b.votes[VOTE_TYPE_ENUM.UPVOTE] - a.votes[VOTE_TYPE_ENUM.UPVOTE]
+    );
+  // let dbData = await
+  // dbData = await dbData.json();
+  // let localBallots = await ;
+  // localBallots = await localBallots.json();
+  // const districts = localBallots.data.districts.map((d) => d.id).join();
+  // const electionDate = localBallots.data.elections[0].date;
+  // let ballotsData = await fetch(
+  //   `https://api4.ballotpedia.org/sample_ballot_results?districts=${districts}&election_date=${electionDate}`
+  // );
+  // ballotsData = await ballotsData.json();
   return {
     props: {
-      elections: ballotsData.data.districts.reduce((acc, { races }) => {
-        if (races) return acc.concat(races);
-        return acc;
-      }, []),
+      elections,
       electionDate,
     },
   };

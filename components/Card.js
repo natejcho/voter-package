@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { useUpvote } from "../utils/utils";
+import { useUpvote, noop } from "../utils/utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`
@@ -63,7 +63,7 @@ const Styled = styled.tr`
 
 const Card = (props) => {
   const [isVisible, setIsVisible] = React.useState(true);
-  const onUpvote = useUpvote("post", props.bill_id);
+  // const onUpvote = useUpvote("post", props.bill_id);
 
   // const onUpvote = async () => {
   //   await fetch("/api/upvote?post_id=" + props.bill_id);
@@ -78,7 +78,7 @@ const Card = (props) => {
         <>
           {false && <td className="index">{props.index}.</td>}
           <td className="vote-container">
-            <Vote votes={props.votes} onUpvote={onUpvote} showPoints />
+            <Vote votes={props.votes} onUpvote={props.onUpvote} showScore />
           </td>
           <td className="post">
             <Link href={billRoute}>
@@ -120,6 +120,11 @@ Card.propTypes = {
   short_title: PropTypes.string.isRequired,
   sponsor_name: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+  onUpvote: PropTypes.func,
+};
+
+Card.defaultProps = {
+  onUpvote: noop,
 };
 
 export default Card;
