@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { GoArrowUp } from "react-icons/go";
+import { VOTE_TYPE_ENUM } from "../utils/constants";
 
 const Styled = styled.div`
   align-items: center;
@@ -30,7 +31,7 @@ const Styled = styled.div`
     stroke: #bd0008;
     stroke-width: 1px;
   }
-  .points {
+  .votes {
     font-size: 10pt;
   }
 `;
@@ -39,23 +40,23 @@ function Vote(props) {
   const [isClicked, setIsClicked] = React.useState(props.isVoted || false);
   const [votes, setVotes] = React.useState(props.votes);
 
-  const handleClick = async () => {
+  const handleClick = () => {
     if (props.onUpvote) {
-      await props.onUpvote();
+      props.onUpvote();
     }
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
   };
-  const handleLeftUpvote = async () => {
+  const handleLeftUpvote = () => {
     if (props.onUpvote) {
-      await props.onUpvote("left");
+      props.onUpvote(VOTE_TYPE_ENUM.LEFT);
     }
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
   };
-  const handleRightUpvote = async () => {
+  const handleRightUpvote = () => {
     if (props.onUpvote) {
-      await props.onUpvote("right");
+      props.onUpvote(VOTE_TYPE_ENUM.RIGHT);
     }
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
@@ -64,8 +65,8 @@ function Vote(props) {
   return (
     <Styled isClicked={isClicked}>
       <GoArrowUp className="arrow" onClick={handleClick} />
-      {props.showPoints && <span className="points">{votes}</span>}
-      {!props.showPoints && (
+      {props.showScore && <span className="votes">{votes}</span>}
+      {!props.showScore && (
         <div>
           <GoArrowUp className="left-arrow" onClick={handleLeftUpvote} />
           <GoArrowUp className="right-arrow" onClick={handleRightUpvote} />
@@ -74,14 +75,16 @@ function Vote(props) {
     </Styled>
   );
 }
+
 Vote.propTypes = {
-  isVoted: PropTypes.bool,
-  points: PropTypes.number,
-  showPoints: PropTypes.bool,
+  isVoted: PropTypes.bool.isRequired,
+  votes: PropTypes.number,
+  showScore: PropTypes.bool.isRequired,
+  onUpvote: PropTypes.func,
 };
+
 Vote.defaultProps = {
-  isVoted: false,
-  points: 0,
-  showPoints: false,
+  votes: 0,
 };
+
 export default Vote;
