@@ -83,16 +83,21 @@ export async function getServerSideProps() {
       };
     }),
   ]);
-  const elections = ballotsData.data.districts.reduce((acc, { races }) => {
-    if (races)
-      return acc.concat(
-        races.map((race) => ({
-          ...race,
-          votes: dbData[race.id] || {},
-        }))
-      );
-    return acc;
-  }, []);
+  const elections = ballotsData.data.districts
+    .reduce((acc, { races }) => {
+      if (races)
+        return acc.concat(
+          races.map((race) => ({
+            ...race,
+            votes: dbData[race.id] || {},
+          }))
+        );
+      return acc;
+    }, [])
+    // TODO: lean on firestore to sort instead of sorting manually
+    .sort(
+      (a, b) => b.votes[VOTE_TYPE_ENUM.UPVOTE] - a.votes[VOTE_TYPE_ENUM.UPVOTE]
+    );
   // let dbData = await
   // dbData = await dbData.json();
   // let localBallots = await ;

@@ -8,7 +8,7 @@ export default async (req, res) => {
         console.log("getting elections upvote data");
         const snapshot = await db
           .collection("elections")
-          .orderBy(VOTE_TYPE_ENUM.UPVOTE)
+          // .orderBy(VOTE_TYPE_ENUM.UPVOTE)
           .get();
         if (snapshot.empty) throw "no elections found";
         else {
