@@ -1,5 +1,5 @@
 import { FieldValue } from "@google-cloud/firestore";
-import db from "../../lib/db";
+import { db } from "../../lib";
 import { VOTE_TYPE_ENUM } from "../../utils/constants";
 
 /**

@@ -1,4 +1,4 @@
-import db from "../../lib/db";
+import { db } from "../../lib";
 
 export default async (req, res) => {
   const { commentId, value } = req.body;
