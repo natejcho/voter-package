@@ -37,7 +37,7 @@ const Styled = styled.div`
 `;
 
 function Vote(props) {
-  const [isClicked, setIsClicked] = React.useState(props.isVoted || false);
+  const [isClicked, setIsClicked] = React.useState(props.isVoted);
   const [votes, setVotes] = React.useState(props.votes);
 
   const handleClick = () => {
@@ -77,13 +77,14 @@ function Vote(props) {
 }
 
 Vote.propTypes = {
-  isVoted: PropTypes.bool.isRequired,
+  isVoted: PropTypes.bool,
   votes: PropTypes.number,
   showScore: PropTypes.bool.isRequired,
   onUpvote: PropTypes.func,
 };
 
 Vote.defaultProps = {
+  isVoted: false,
   votes: 0,
 };
 

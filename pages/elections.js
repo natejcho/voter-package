@@ -4,7 +4,7 @@ import fetch from "isomorphic-unfetch";
 import PropTypes from "prop-types";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
-import { parseCookies } from "../lib";
+import { get_URI, parseCookies } from "../lib";
 import { UPVOTE_ENDPOINT, VOTE_TYPE_ENUM } from "../utils/constants";
 
 function Elections(props) {
@@ -53,13 +53,14 @@ function Elections(props) {
   );
 }
 
-export async function getServerSideProps({ req }) {
+export async function getServerSideProps(context) {
   //TODO: add forward geocoding
   //   // fetch(FORWARD_GEOCODING_API).then(async locations => {
   //   //   const lat = '40.7487727';
   //   //   const long = '-73.9849336';
   //   //   return await
-  const cookies = parseCookies(req);
+
+  const cookies = parseCookies(context.req);
   const [lat, long] =
     cookies.latitude && cookies.longitude
       ? [cookies.latitude, cookies.longitude]
@@ -67,7 +68,7 @@ export async function getServerSideProps({ req }) {
 
   const [dbData, { ballotsData, electionDate }] = await Promise.all([
     // TODO: the host domain needs to depend on deployment
-    fetch("http://localhost:3000/api/elections", {
+    fetch(`${get_URI(context)}/api/elections`, {
       method: "GET",
     }).then((data) => data.json()),
     fetch(
