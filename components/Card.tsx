@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { useUpvote, noop } from "../utils/utils";
+import { useUpvote, noop } from "../utils";
 import Vote from "./Vote";
 
 const Styled = styled.tr`

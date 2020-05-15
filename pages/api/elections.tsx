@@ -1,7 +1,8 @@
-import { db } from "../../lib";
-import { VOTE_TYPE_ENUM } from "../../utils/constants";
+import { db } from "lib";
+// import { VOTE_TYPE_ENUM } from "utils/constants";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     switch (req.method) {
       case "GET":

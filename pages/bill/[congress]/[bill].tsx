@@ -6,7 +6,7 @@ import Comment from "../../../components/Comment";
 import Layout from "../../../components/Layout";
 import Vote from "../../../components/Vote";
 import { get_SPECIFIC_BILL } from "../../../utils/constants";
-import { fetcher } from "../../../utils/utils";
+import { fetcher } from "../../../utils";
 
 const Styled = styled.div`
   display: flex;

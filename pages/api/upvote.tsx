@@ -1,13 +1,14 @@
 import { FieldValue } from "@google-cloud/firestore";
-import { db } from "../../lib";
-import { VOTE_TYPE_ENUM } from "../../utils/constants";
+import { db } from "lib";
+import { VOTE_TYPE_ENUM } from "utils/constants";
+import { NextApiRequest, NextApiResponse } from "next";
 
 /**
  * upvote API - upvote endpoint for handling upvote requests
  * @param {HTTPRequeset} req
  * @param {HTTPResponse} res
  */
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { post_id, comment_id, comment_type } = req.query;
   try {
     switch (req.method) {

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import useSWR from "swr";
-import { fetcher, useUpvote } from "../utils/utils";
+import { fetcher, useUpvote } from "../utils";
 import Vote from "./Vote";
 
 const Styled = styled.div`
