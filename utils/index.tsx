@@ -8,7 +8,11 @@ export function fetcher(url) {
 export const noop = () => {};
 
 // TODO: no upvote functionality till new db migration
-export function useUpvote(type, id, commentType = "moderate") {
+export function useUpvote(
+  type: string,
+  id: number,
+  commentType: string = "moderate"
+) {
   // return async () =>
   //   await fetch(
   //     `/api/upvote?${type}_id=${id}${

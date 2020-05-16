@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { GoX } from "react-icons/go";
 
-Auth.propTypes = {
-  closeLogin: PropTypes.func,
-};
+interface AuthInterface {
+  isLoginOpen: boolean;
+  closeLogin: () => void;
+}
 
 const Styled = styled.div`
   background: rgba(0, 0, 0, 0.4);
@@ -136,7 +137,7 @@ const Styled = styled.div`
   }
 `;
 
-function Auth(props) {
+const Auth: React.FC<AuthInterface> = (props) => {
   return (
     <Styled>
       <div id="snatch-em-up">
@@ -168,6 +169,6 @@ function Auth(props) {
       </div>
     </Styled>
   );
-}
+};
 
 export default Auth;

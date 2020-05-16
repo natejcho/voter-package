@@ -3,10 +3,14 @@ import { v4 as uuidv4 } from "uuid";
 import { db } from "lib";
 import { NextApiRequest, NextApiResponse } from "next";
 
+interface CommentReq {
+  comment_id?: string;
+}
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   switch (req.method) {
     case "GET":
-      const { comment_id } = req.query;
+      const { comment_id }: CommentReq = req.query;
       console.log("getting comment for " + comment_id);
       try {
         const doc = await db.collection("comments").doc(comment_id).get();

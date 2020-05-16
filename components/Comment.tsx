@@ -31,7 +31,10 @@ const Styled = styled.div`
 `;
 
 const Comment = (props) => {
-  const onUpvote = (type) => useUpvote("comment", props.id, type)();
+  const onUpvote = (type: string) => {
+    // useUpvote("comment", props.id, type)();
+  };
+
   const { data, error } = useSWR(
     "/api/comments?comment_id=" + props.id,
     fetcher

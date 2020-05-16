@@ -12,8 +12,8 @@ export const FORWARD_GEOCODING_API =
 // FORWARD_GEOCODING_API.search = new URLSearchParams(params).toString();
 export const UPVOTE_ENDPOINT = "/api/upvote";
 
-export const VOTE_TYPE_ENUM = {
-  LEFT: "LEFT",
-  UPVOTE: "UPVOTE",
-  RIGHT: "RIGHT",
-};
+export enum VOTE_TYPE {
+  LEFT = "LEFT",
+  UPVOTE = "UPVOTE",
+  RIGHT = "RIGHT",
+}

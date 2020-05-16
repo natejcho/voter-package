@@ -52,11 +52,11 @@ function Header(props) {
           <a>oter Package</a>
         </span>
       </Link>
-      <dev className="auth">
+      <div className="auth">
         <Link href="/">
           <span onClick={props.openLogin}>login</span>
         </Link>
-      </dev>
+      </div>
     </Styled>
   );
 }

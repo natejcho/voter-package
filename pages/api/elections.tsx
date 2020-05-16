@@ -1,5 +1,5 @@
 import { db } from "lib";
-// import { VOTE_TYPE_ENUM } from "utils/constants";
+// import { VOTE_TYPE } from "utils/constants";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -9,7 +9,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("getting elections upvote data");
         const snapshot = await db
           .collection("elections")
-          // .orderBy(VOTE_TYPE_ENUM.UPVOTE)
+          // .orderBy(VOTE_TYPE.UPVOTE)
           .get();
         if (snapshot.empty) throw "no elections found";
         else {
