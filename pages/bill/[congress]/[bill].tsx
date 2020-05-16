@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
 import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
+import { useState } from "react";
 import useSWR from "swr";
 import Comment from "../../../components/Comment";
 import Layout from "../../../components/Layout";
 import Vote from "../../../components/Vote";
 import { get_SPECIFIC_BILL } from "../../../utils/constants";
-import { fetcher } from "../../../utils/utils";
+import { fetcher } from "../../../utils";
 
 const Styled = styled.div`
   display: flex;
@@ -99,7 +100,7 @@ const Styled = styled.div`
 
 function Post({ bill }) {
   const router = useRouter();
-  const [comment, setComment] = React.useState("");
+  const [comment, setComment] = useState("");
   const { data, error } = useSWR(
     "/api/comments?comment_id=" + bill.bill_id,
     fetcher
@@ -123,7 +124,11 @@ function Post({ bill }) {
       <Styled>
         <div className="the-post-itself">
           <span className="vote-container">
-            <Vote points={Math.floor(Math.random() * 100)} />
+            <Vote
+              votes={Math.floor(Math.random() * 100)}
+              onUpvote={() => {}}
+              showScore={false}
+            />
           </span>
           <div className="entry">
             <p className="title">
@@ -157,8 +162,8 @@ function Post({ bill }) {
         <form className="new-comment">
           <textarea
             name="text"
-            rows="6"
-            cols="60"
+            rows={6}
+            cols={60}
             value={comment}
             onChange={(e) => setComment(e.target.value)}
           />

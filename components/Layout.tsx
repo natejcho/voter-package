@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import Auth from "./Auth";
 import Header from "./Header";
 import styled from "@emotion/styled";
@@ -15,7 +16,7 @@ const Styled = styled.div`
   font-size: 10pt;
 `;
 function Layout(props) {
-  const [isLoginOpen, setIsLoginOpen] = React.useState(false);
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
 
   return (
     <Styled>

@@ -1,8 +1,13 @@
 import styled from "@emotion/styled";
 import Link from "next/link";
 import PropTypes from "prop-types";
-import { useUpvote, noop } from "../utils/utils";
+import { useState } from "react";
+import { useUpvote, noop } from "../utils";
 import Vote from "./Vote";
+
+interface StyledCardInterface {
+  isVisited: boolean;
+}
 
 const Styled = styled.tr`
   > td {
@@ -50,7 +55,8 @@ const Styled = styled.tr`
     }
 
     .title {
-      color: ${(props) => (props.visited ? "#551a8b" : "#0000ff")};
+      color: ${(props: StyledCardInterface) =>
+        props.isVisited ? "#551a8b" : "#0000ff"};
       font-size: medium;
       cursor: pointer;
     }
@@ -62,7 +68,7 @@ const Styled = styled.tr`
 `;
 
 const Card = (props) => {
-  const [isVisible, setIsVisible] = React.useState(true);
+  const [isVisible, setIsVisible] = useState(true);
   // const onUpvote = useUpvote("post", props.bill_id);
 
   // const onUpvote = async () => {
@@ -73,7 +79,7 @@ const Card = (props) => {
   // `/bill/${props.congress}/${props.bill_slug}`;
 
   return (
-    <Styled>
+    <Styled isVisited={false}>
       {isVisible && (
         <>
           {false && <td className="index">{props.index}.</td>}

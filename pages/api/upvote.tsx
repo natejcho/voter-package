@@ -1,20 +1,21 @@
 import { FieldValue } from "@google-cloud/firestore";
-import { db } from "../../lib";
-import { VOTE_TYPE_ENUM } from "../../utils/constants";
+import { db } from "lib";
+import { VOTE_TYPE } from "utils/constants";
+import { NextApiRequest, NextApiResponse } from "next";
 
 /**
  * upvote API - upvote endpoint for handling upvote requests
  * @param {HTTPRequeset} req
  * @param {HTTPResponse} res
  */
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { post_id, comment_id, comment_type } = req.query;
   try {
     switch (req.method) {
       case "POST":
         const { id, type, collection } = req.body;
         console.log("upvoting for " + collection + " " + id);
-        const election = { [VOTE_TYPE_ENUM.UPVOTE]: FieldValue.increment(1) };
+        const election = { [VOTE_TYPE.UPVOTE]: FieldValue.increment(1) };
         if (type != null) election[type] = FieldValue.increment(1);
         await db
           .collection(collection)

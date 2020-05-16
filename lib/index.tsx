@@ -1,5 +1,6 @@
 import cookie from "cookie";
 import admin from "firebase-admin";
+import fetch from "isomorphic-unfetch";
 
 //let's only do this once!
 if (!admin.apps.length) {
@@ -38,4 +39,16 @@ export function get_URI(context) {
     } = {},
   } = context;
   return proto && host ? `${proto}://${host}` : "http://localhost:3000";
+}
+
+/**
+ *  handles http request and json parsing
+ */
+export async function http(
+  request: RequestInfo,
+  options?: object
+): Promise<any> {
+  const response = await fetch(request, options);
+  const body = await response.json();
+  return body;
 }

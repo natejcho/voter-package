@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import Card from "../components/Card";
 import Layout from "../components/Layout";
 import { get_URI, parseCookies } from "../lib";
-import { UPVOTE_ENDPOINT, VOTE_TYPE_ENUM } from "../utils/constants";
+import { UPVOTE_ENDPOINT, VOTE_TYPE } from "../utils/constants";
 
 function Elections(props) {
   return (
@@ -43,7 +43,7 @@ function Elections(props) {
                 }}
                 short_title={office.name + " | " + office.type}
                 sponsor_name=""
-                votes={election.votes[VOTE_TYPE_ENUM.UPVOTE]}
+                votes={election.votes[VOTE_TYPE.UPVOTE]}
               />
             );
           })}
@@ -102,9 +102,7 @@ export async function getServerSideProps(context) {
       return acc;
     }, [])
     // TODO: lean on firestore to sort instead of sorting manually
-    .sort(
-      (a, b) => b.votes[VOTE_TYPE_ENUM.UPVOTE] - a.votes[VOTE_TYPE_ENUM.UPVOTE]
-    );
+    .sort((a, b) => b.votes[VOTE_TYPE.UPVOTE] - a.votes[VOTE_TYPE.UPVOTE]);
   // let dbData = await
   // dbData = await dbData.json();
   // let localBallots = await ;

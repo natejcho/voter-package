@@ -1,7 +1,19 @@
 import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+import { useState, FC } from "react";
 import { GoArrowUp } from "react-icons/go";
-import { VOTE_TYPE_ENUM } from "../utils/constants";
+import { VOTE_TYPE } from "../utils/constants";
+
+interface VoteInterface {
+  isVoted?: boolean;
+  votes: number;
+  showScore?: boolean;
+  onUpvote: (x?: VOTE_TYPE) => void;
+}
+
+interface StyledVoteInterface {
+  isClicked: boolean;
+}
 
 const Styled = styled.div`
   align-items: center;
@@ -17,7 +29,8 @@ const Styled = styled.div`
     width: 0.8rem;
   }
   .arrow {
-    fill: ${(props) => (props.isClicked ? "#616161" : "#fff")};
+    fill: ${(props: StyledVoteInterface) =>
+      props.isClicked ? "#616161" : "#fff"};
     stroke: #444;
     stroke-width: 1px;
   }
@@ -36,9 +49,9 @@ const Styled = styled.div`
   }
 `;
 
-function Vote(props) {
-  const [isClicked, setIsClicked] = React.useState(props.isVoted);
-  const [votes, setVotes] = React.useState(props.votes);
+const Vote: FC<VoteInterface> = (props) => {
+  const [isClicked, setIsClicked] = useState(props.isVoted);
+  const [votes, setVotes] = useState(props.votes);
 
   const handleClick = () => {
     if (props.onUpvote) {
@@ -49,14 +62,14 @@ function Vote(props) {
   };
   const handleLeftUpvote = () => {
     if (props.onUpvote) {
-      props.onUpvote(VOTE_TYPE_ENUM.LEFT);
+      props.onUpvote(VOTE_TYPE.LEFT);
     }
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
   };
   const handleRightUpvote = () => {
     if (props.onUpvote) {
-      props.onUpvote(VOTE_TYPE_ENUM.RIGHT);
+      props.onUpvote(VOTE_TYPE.RIGHT);
     }
     setIsClicked((prev) => !prev);
     setVotes((prev) => prev + 1);
@@ -74,13 +87,6 @@ function Vote(props) {
       )}
     </Styled>
   );
-}
-
-Vote.propTypes = {
-  isVoted: PropTypes.bool,
-  votes: PropTypes.number,
-  showScore: PropTypes.bool.isRequired,
-  onUpvote: PropTypes.func,
 };
 
 Vote.defaultProps = {

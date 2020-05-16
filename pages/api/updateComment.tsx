@@ -1,6 +1,7 @@
-import { db } from "../../lib";
+import { db } from "lib";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const { commentId, value } = req.body;
   console.log("updating comment " + commentId);
   try {

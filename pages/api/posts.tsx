@@ -1,6 +1,7 @@
-import { db } from "../../lib";
+import { db } from "lib";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("getting posts");
   const snapshot = await db.collection("posts").get();
   const billsMap = {};
