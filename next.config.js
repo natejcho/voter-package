@@ -5,6 +5,11 @@ module.exports = {
     // Add the new plugin to the existing webpack plugins
     config.plugins.push(new Dotenv({ silent: true }));
 
+    // Fixes npm packages that depend on `fs` module
+    config.node = {
+      fs: 'empty'
+    }
+
     return config;
   },
   target: 'serverless',
