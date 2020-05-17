@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import PropTypes from "prop-types";
+import tw from "@tailwindcssinjs/macro";
 import { GoX } from "react-icons/go";
 
 interface AuthInterface {
@@ -8,131 +8,52 @@ interface AuthInterface {
 }
 
 const Styled = styled.div`
-  background: rgba(0, 0, 0, 0.4);
-  height: 100%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 110;
+  ${tw`bg-black bg-opacity-50 h-full w-full fixed left-0 top-0 z-30`}
 
   #snatch-em-up {
-    align-items: center;
-    background: #fff;
-    border-radius: 4px;
-    box-shadow: 1px 7px 20px 2px rgba(0, 0, 0, 0.4);
-    display: grid;
-    grid-template-columns: 156px auto;
-    height: 550px;
-    left: 50%;
-    overflow: hidden;
-    position: fixed;
-    top: 50%;
+    ${tw`grid-cols-4 items-center bg-white z-40 w-1/2 rounded top-1/2 left-1/2 overflow-hidden fixed grid`}
+    height: 34rem;
     transform: translate(-50%, -50%);
-    width: 750px;
-    z-index: 111;
 
     #login-password {
-      margin-top: 24px;
+      ${tw`mt-6`}
     }
 
     form {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      max-width: 440px;
-      min-width: 260px;
-      padding: 24px;
+      ${tw`flex col-span-3 p-6 justify-start flex-col`}
 
       button {
-        background: #0079d3;
-        border-radius: 4px;
-        border: none;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-size: 14px;
-        font-weight: 600;
-        height: 35px;
-        letter-spacing: 0.5px;
-        line-height: unset;
-        margin-top: 24px;
-        min-width: 155px;
-        overflow: inherit;
-        position: relative;
-        text-align: center;
-        width: 155px;
+        ${tw`bg-indigo-500 mt-6 w-40 rounded border-none tracking-wide text-white text-sm font-semibold inline-block h-8`}
       }
       h1 {
-        font-size: 18px;
-        font-weight: 500;
-        line-height: 22px;
-        margin: 20px 0;
+        ${tw`my-5 text-lg`}
       }
       img {
-        height: 60pt;
-        width: 60pt;
-        background: #5772ff;
-        border-radius: 45px;
+        ${tw`h-16 w-16 bg-indigo-500 rounded-full`}
       }
       .login-input {
-        background-color: #fcfcfb;
-        border-radius: 4px;
-        border: 1px solid rgba(0, 0, 0, 0.1);
-        box-sizing: border-box;
-        font-size: 10.5pt;
-        font-weight: 400;
-        height: 48px;
-        line-height: 21px;
-        overflow: visible;
-        padding: 22px 12px 10px;
-        transition: all 0.2s ease-in-out;
+        ${tw`bg-gray-100 p-3 pt-5 transition-all duration-200 ease-in-out rounded border border-opacity-25 box-border text-sm h-12`}
 
         &:hover::-webkit-input-placeholder ,
         &:focus::-webkit-input-placeholder {
-          -webkit-transition: all 0.35s ease-in-out;
-          font-size: 8pt;
-          font-weight 500;
           transform: translateX(-1%) translateY(-150%);
-          transition: all 0.35s ease-in-out;
+          ${tw`font-medium text-xs`}
       }
       }
       .other-options {
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 18px;
-        margin: 8px 0;
-        max-height: 1000px;
+        ${tw`text-xs my-2`}
 
         a {
-          color: #0079d3;
-          cursor: pointer;
-          font-size: 12px;
-          font-weight: 400;
-          letter-spacing: 0.5px;
-          line-height: 24px;
-          text-decoration: none;
-          text-transform: none;
+          ${tw`cursor-pointer text-blue-400 text-xs tracking-wider leading-6`}
         }
       }
     }
     svg {
-      color: gray;
-      cursor: pointer;
-      height: 1.5rem;
-      margin: 1rem .8rem;
-      position: absolute;
-      right: 0;
-      top: 0;
-      width: 1.5rem;
+      ${tw`top-0 right-0 my-4 mx-3 h-6 w-6 text-gray-500 cursor-pointer absolute`}
     }
     .this-might-be-something-later {
-      background-color: #5772ff;
+      ${tw`bg-indigo-500 shadow h-full`}
       background-image: linear-gradient(#7e93ff,#6b82ff 60%,#5772ff);
-      background-repeat: no-repeat;
-      filter: none;
-      box-shadow: 0 1px 10px rgba(0,0,0,0.1);
-      height: 100%;
     }
   }
 `;
