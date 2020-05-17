@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import PropTypes from "prop-types";
 import { useState, FC } from "react";
 import { GoArrowUp } from "react-icons/go";
-import { VOTE_TYPE } from "../utils/constants";
+import { VOTE_TYPE } from "utils/constants";
 
 interface VoteInterface {
   isVoted?: boolean;

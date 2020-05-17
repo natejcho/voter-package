@@ -38,7 +38,7 @@ const Styled = styled.div`
         &:focus::-webkit-input-placeholder {
           transform: translateX(-1%) translateY(-150%);
           ${tw`font-medium text-xs`}
-      }
+        }
       }
       .other-options {
         ${tw`text-xs my-2`}

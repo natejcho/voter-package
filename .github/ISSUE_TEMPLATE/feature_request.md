@@ -7,10 +7,6 @@ assignees: ''
 
 ---
 
-**Describe the solution you'd like. What do you want???**
+**Describe what you want?**
 
-**Is your feature request related to a problem? Maybe raise a bug instead**
-
-**Describe alternatives you've considered**
-
-**Additional comments**
+**Additional comments/Related Issues/Screenshots**
