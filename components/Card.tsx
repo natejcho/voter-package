@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import tw from "@tailwindcssinjs/macro";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { useState } from "react";
@@ -11,59 +12,47 @@ interface StyledCardInterface {
 
 const Styled = styled.tr`
   > td {
-    // border-top: 1px solid #f6f7f8;
-    padding-top: 5px;
+    ${tw` p-0  pt-1`}
   }
 
   .index {
-    display: flex;
-    justify-content: flex-end;
+    ${tw`flex justify-end`}
   }
 
   &:active,
   &:focus-within,
   &:hover {
     .post {
-      background-color: #f0f3fc;
-      border-right: 2px solid #bbdefb;
+      ${tw`bg-blue-100 border-0 border-r-2 border-blue-300`}
     }
   }
 
   .post {
-    background-color: #fff;
-    border: 1px solid #eef1f5;
-    border-radius: 3px;
-    display: flex;
-    flex-direction: column;
+    ${tw`bg-white rounded-sm flex flex-col`}
 
     .comments {
-      cursor: pointer;
-      padding-left: 10px;
-      padding-right: 10px;
-      font-weight: bold;
+      ${tw`cursor-pointer p-0 px-2 font-bold`}
     }
 
     .details {
       background-color: #f6f7f8;
       color: #444;
-      font-size: 10pt;
-      margin-top: 9px;
+      ${tw`cursor-pointer m-0 mt-2 text-sm`}
 
       .hide {
-        cursor: pointer;
+        ${tw`cursor-pointer`}
       }
     }
 
     .title {
       color: ${(props: StyledCardInterface) =>
         props.isVisited ? "#551a8b" : "#0000ff"};
-      font-size: medium;
-      cursor: pointer;
+      ${tw`cursor-pointer text-base`}
     }
   }
 
   .vote-container {
-    vertical-align: top;
+    ${tw`align-top`}
   }
 `;
 
