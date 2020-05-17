@@ -1,10 +1,10 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/core";
 import fetch from "isomorphic-unfetch";
-import Card from "../components/Card";
-import Layout from "../components/Layout";
-import { db } from "../lib";
-import { INTRODUCED_BILLS_URL } from "../utils/constants";
+import Card from "components/Card";
+import Layout from "components/Layout";
+import { db } from "lib";
+import { INTRODUCED_BILLS_URL } from "utils/constants";
 
 function Index(props) {
   // let { data } = useSWR(

@@ -3,11 +3,11 @@ import fetch from "isomorphic-unfetch";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import useSWR from "swr";
-import Comment from "../../../components/Comment";
-import Layout from "../../../components/Layout";
-import Vote from "../../../components/Vote";
-import { get_SPECIFIC_BILL } from "../../../utils/constants";
-import { fetcher } from "../../../utils";
+import Comment from "components/Comment";
+import Layout from "components/Layout";
+import Vote from "components/Vote";
+import { get_SPECIFIC_BILL } from "utils/constants";
+import { fetcher } from "utils";
 
 const Styled = styled.div`
   display: flex;

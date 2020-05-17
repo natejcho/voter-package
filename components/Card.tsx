@@ -3,7 +3,7 @@ import tw from "@tailwindcssinjs/macro";
 import Link from "next/link";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { useUpvote, noop } from "../utils";
+import { useUpvote, noop } from "utils";
 import Vote from "./Vote";
 
 interface StyledCardInterface {

@@ -2,10 +2,10 @@
 import { jsx, css } from "@emotion/core";
 import fetch from "isomorphic-unfetch";
 import PropTypes from "prop-types";
-import Card from "../components/Card";
-import Layout from "../components/Layout";
-import { get_URI, parseCookies } from "../lib";
-import { UPVOTE_ENDPOINT, VOTE_TYPE } from "../utils/constants";
+import Card from "components/Card";
+import Layout from "components/Layout";
+import { get_URI, parseCookies } from "lib";
+import { UPVOTE_ENDPOINT, VOTE_TYPE } from "utils/constants";
 
 function Elections(props) {
   return (

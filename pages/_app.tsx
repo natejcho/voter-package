@@ -1,5 +1,5 @@
 import App from "next/app";
-import "../styles/base.css";
+import "styles/base.css";
 // import Cookie from "js-coookie";
 
 export default class MyApp extends App {
