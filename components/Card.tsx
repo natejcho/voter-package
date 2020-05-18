@@ -6,6 +6,18 @@ import { useState } from "react";
 import { useUpvote, noop } from "utils";
 import Vote from "./Vote";
 
+interface CardInterface {
+  // update type
+  comments: Array<any>;
+  index: number;
+  latest_major_action_date: string;
+  link: string;
+  onUpvote?: () => void;
+  short_title: string;
+  sponsor_name: string;
+  votes: number;
+}
+
 interface StyledCardInterface {
   isVisited: boolean;
 }
@@ -56,7 +68,7 @@ const Styled = styled.tr`
   }
 `;
 
-const Card = (props) => {
+const Card: React.FC<CardInterface> = (props) => {
   const [isVisible, setIsVisible] = useState(true);
   // const onUpvote = useUpvote("post", props.bill_id);
 
@@ -76,9 +88,9 @@ const Card = (props) => {
             <Vote votes={props.votes} onUpvote={props.onUpvote} showScore />
           </td>
           <td className="post">
-            <Link href={billRoute}>
+            <a href={props.link}>
               <span className="title">{props.short_title}</span>
-            </Link>
+            </a>
             <div className="details">
               {false && (
                 <>
@@ -105,17 +117,6 @@ const Card = (props) => {
       )}
     </Styled>
   );
-};
-
-Card.propTypes = {
-  bill_id: PropTypes.string.isRequired,
-  comments: PropTypes.array.isRequired,
-  index: PropTypes.number.isRequired,
-  latest_major_action_date: PropTypes.string.isRequired,
-  short_title: PropTypes.string.isRequired,
-  sponsor_name: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
-  onUpvote: PropTypes.func,
 };
 
 Card.defaultProps = {

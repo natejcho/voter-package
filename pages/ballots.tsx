@@ -23,10 +23,11 @@ function Ballots(props) {
                 bill_id="0"
                 comments={[]}
                 index={0}
+                key={"ballot-measure-" + ballotMeasure.id}
                 latest_major_action_date={props.electionDate}
+                link={ballotMeasure.url}
                 short_title={ballotMeasure.name}
                 sponsor_name=""
-                key={"ballot-measure-" + ballotMeasure.id}
                 votes={0}
               />
             );

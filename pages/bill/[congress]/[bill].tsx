@@ -132,10 +132,7 @@ function Post({ bill }) {
           </span>
           <div className="entry">
             <p className="title">
-              <a
-                href={bill.govtrack_url || bill.congressdotgov_url}
-                target="_blank"
-              >
+              <a href={bill.govtrack_url || bill.congressdotgov_url}>
                 {bill.short_title}
               </a>
             </p>

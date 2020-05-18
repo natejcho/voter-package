@@ -28,6 +28,7 @@ function Elections(props) {
                 index={index + 1}
                 key={election.id}
                 latest_major_action_date={props.electionDate}
+                link={election.url}
                 onUpvote={(type) => {
                   fetch(UPVOTE_ENDPOINT, {
                     method: "POST",
