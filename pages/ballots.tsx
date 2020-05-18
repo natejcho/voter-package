@@ -1,5 +1,4 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import { css } from "@emotion/css";
 import { http } from "lib";
 import PropTypes from "prop-types";
 import Card from "components/Card";

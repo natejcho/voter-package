@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx, css } from "@emotion/core";
+import styled from "@emotion/styled";
+import tw from "@tailwindcssinjs/macro";
 import fetch from "isomorphic-unfetch";
 import PropTypes from "prop-types";
 import Card from "components/Card";
@@ -7,17 +7,17 @@ import Layout from "components/Layout";
 import { get_URI, parseCookies } from "lib";
 import { UPVOTE_ENDPOINT, VOTE_TYPE } from "utils/constants";
 
+//TODO: idk if i like table anymore
+const StyledTable = styled.table`
+  border-spacing: 0 0.5rem;
+  ${tw`w-full border-separate`}
+`;
+
 function Elections(props) {
   return (
     <Layout>
       <span>Election Date: {props.electionDate}</span>
-      <table
-        css={css`
-          border-collapse: separate;
-          border-spacing: 0 1rem;
-          width: 100%;
-        `}
-      >
+      <StyledTable>
         <tbody>
           {props.elections.map((election, index) => {
             const office = election.office;
@@ -49,7 +49,7 @@ function Elections(props) {
             );
           })}
         </tbody>
-      </table>
+      </StyledTable>
     </Layout>
   );
 }

@@ -1,6 +1,4 @@
-/** @jsx jsx */
-// TODO: switch to macro
-import { jsx, css } from "@emotion/core";
+import { css } from "@emotion/css";
 import fetch from "isomorphic-unfetch";
 import Card from "components/Card";
 import Layout from "components/Layout";
