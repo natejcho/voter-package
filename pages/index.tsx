@@ -1,9 +1,11 @@
 /** @jsx jsx */
+// TODO: switch to macro
 import { jsx, css } from "@emotion/core";
 import fetch from "isomorphic-unfetch";
 import Card from "components/Card";
 import Layout from "components/Layout";
 import { db } from "lib";
+import Router from "next/router";
 import { INTRODUCED_BILLS_URL } from "utils/constants";
 
 function Index(props) {
@@ -28,7 +30,11 @@ function Index(props) {
               key={card.bill_id}
               index={index + 1}
               comments={props.billsMap[card.bill_id].comments}
-              congress={props.recentBills.congress}
+              link={
+                true
+                  ? ""
+                  : `/bill/${props.recentBills.congress}/${props.bill_slug}`
+              }
               votes={props.billsMap[card.bill_id].votes}
             />
           ))}
@@ -38,7 +44,17 @@ function Index(props) {
   );
 }
 
-export async function getServerSideProps() {
+export async function getServerSideProps(ctx) {
+  // redirect to elections for now
+  if (typeof window === "undefined") {
+    ctx.res.writeHeader(301, { Location: "/elections" });
+    ctx.res.end();
+    return {};
+  } else {
+    Router.replace("/elections");
+    return {};
+  }
+
   const [recentBills, snapshot] = await Promise.all([
     fetch(INTRODUCED_BILLS_URL, {
       method: "get",
