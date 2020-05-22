@@ -23,7 +23,6 @@ function Elections(props) {
             const office = election.office;
             return (
               <Card
-                bill_id="0"
                 comments={[]}
                 index={index + 1}
                 key={election.id}

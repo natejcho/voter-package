@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 import tw from "@tailwindcssinjs/macro";
 import Link from "next/link";
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { useUpvote, noop } from "utils";
+import { VOTE_TYPE } from "utils/constants";
 import Vote from "./Vote";
 
 interface CardInterface {
-  // update type
+  // update Array type
   comments: Array<any>;
   index: number;
   latest_major_action_date: string;
   link: string;
-  onUpvote?: () => void;
+  onUpvote?: (x?: VOTE_TYPE) => void;
   short_title: string;
   sponsor_name: string;
   votes: number;

@@ -19,7 +19,6 @@ function Ballots(props) {
           {props.ballotMeasures.map((ballotMeasure) => {
             return (
               <Card
-                bill_id="0"
                 comments={[]}
                 index={0}
                 key={"ballot-measure-" + ballotMeasure.id}
