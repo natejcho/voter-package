@@ -22,7 +22,7 @@ const Styled = styled.button`
 
   ${tw`hover:bg-indigo-100 active:mt-1 absolute bg-white flex flex-col h-20 w-16 justify-center items-center font-semibold align-top rounded border border-gray-400 `}
 
-  .arrow {
+  svg {
     ${tw`h-5 w-5`}
   }
   .left-arrow {
@@ -67,13 +67,13 @@ const Vote: FC<VoteInterface> = (props) => {
   };
 
   return (
-    <Styled>
-      <Up className="arrow" onClick={handleClick} />
+    <Styled onClick={handleClick}>
+      <Up />
       {props.showScore && <span className="votes">{votes}</span>}
       {!props.showScore && (
         <div>
-          <Up className="left-arrow" onClick={handleLeftUpvote} />
-          <Up className="right-arrow" onClick={handleRightUpvote} />
+          <Up />
+          <Up />
         </div>
       )}
     </Styled>
