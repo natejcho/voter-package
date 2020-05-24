@@ -4,6 +4,7 @@
   ],
   "plugins": [
     "macros",
-    "@emotion/babel-plugin"
+    "@emotion/babel-plugin",
+    "inline-react-svg"
   ]
 }
