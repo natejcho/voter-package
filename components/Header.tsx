@@ -13,7 +13,7 @@ const Styled = styled.header`
   ${tw`bg-indigo-500`}
 
   .container {
-    ${tw`h-16 flex justify-between items-center text-white`}
+    ${tw`h-16 flex justify-between items-center text-white mt-0`}
     span {
       ${tw`flex items-center`}
 
