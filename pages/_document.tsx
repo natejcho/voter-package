@@ -14,10 +14,7 @@ class MyDocument extends Document {
         </Head>
         <body
           style={{
-            width: "80%",
-            margin: "auto",
             backgroundColor: "#e9ebee",
-            paddingRight: "1rem",
           }}
         >
           <Main />

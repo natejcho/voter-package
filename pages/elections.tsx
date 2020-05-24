@@ -8,17 +8,26 @@ import { get_URI, parseCookies } from "lib";
 import { UPVOTE_ENDPOINT, VOTE_TYPE } from "utils/constants";
 
 //TODO: idk if i like table anymore
-const StyledTable = styled.table`
-  border-spacing: 0 0.5rem;
-  ${tw`w-full border-separate`}
+const StyledTable = styled.div`
+  ${tw`w-full rounded bg-white`}
+`;
+
+const StyledDate = styled.div`
+  ${tw`mb-2`}
+  .date {
+    ${tw`text-xl font-semibold leading-8`}
+  }
 `;
 
 function Elections(props) {
   return (
     <Layout>
-      <span>Election Date: {props.electionDate}</span>
+      <StyledDate>
+        {" "}
+        <span className="date">Election Date: {props.electionDate}</span>
+      </StyledDate>
       <StyledTable>
-        <tbody>
+        <ul>
           {props.elections.map((election, index) => {
             const office = election.office;
             return (
@@ -47,7 +56,7 @@ function Elections(props) {
               />
             );
           })}
-        </tbody>
+        </ul>
       </StyledTable>
     </Layout>
   );

@@ -22,34 +22,26 @@ interface StyledCardInterface {
   isVisited: boolean;
 }
 
-const Styled = styled.tr`
-  > td {
-    ${tw` p-0  pt-1`}
-  }
+const Styled = styled.li`
+  ${tw`overflow-hidden relative`}
 
   .index {
     ${tw`flex justify-end`}
   }
 
-  &:active,
-  &:focus-within,
-  &:hover {
-    .post {
-      ${tw`bg-blue-100 border-0 border-r-2 border-blue-300`}
-    }
-  }
-
   .post {
-    ${tw`bg-white rounded-sm flex flex-col`}
+    &:hover {
+      ${tw`bg-indigo-100 border-0 border-r-4 border-indigo-300`}
+    }
+
+    ${tw`flex flex-col justify-between w-auto h-20 box-content  p-5 pl-24`}
 
     .comments {
       ${tw`cursor-pointer p-0 px-2 font-bold`}
     }
 
     .details {
-      background-color: #f6f7f8;
-      color: #444;
-      ${tw`cursor-pointer m-0 mt-2 text-sm`}
+      ${tw`mt-2 h-6 flex items-center text-sm w-auto text-gray-500 text-xs`}
 
       .hide {
         ${tw`cursor-pointer`}
@@ -57,14 +49,8 @@ const Styled = styled.tr`
     }
 
     .title {
-      color: ${(props: StyledCardInterface) =>
-        props.isVisited ? "#551a8b" : "#0000ff"};
-      ${tw`cursor-pointer text-base`}
+      ${tw`cursor-pointer text-base font-semibold text-black`}
     }
-  }
-
-  .vote-container {
-    ${tw`align-top`}
   }
 `;
 
@@ -83,11 +69,10 @@ const Card: React.FC<CardInterface> = (props) => {
     <Styled isVisited={false}>
       {isVisible && (
         <>
-          {false && <td className="index">{props.index}.</td>}
-          <td className="vote-container">
-            <Vote votes={props.votes} onUpvote={props.onUpvote} showScore />
-          </td>
-          <td className="post">
+          {false && <div className="index">{props.index}.</div>}
+          <Vote votes={props.votes} onUpvote={props.onUpvote} showScore />
+
+          <div className="post">
             <a href={props.link}>
               <span className="title">{props.short_title}</span>
             </a>
@@ -112,7 +97,7 @@ const Card: React.FC<CardInterface> = (props) => {
                 hide
               </span>
             </div>
-          </td>
+          </div>
         </>
       )}
     </Styled>

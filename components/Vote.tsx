@@ -1,8 +1,10 @@
 import styled from "@emotion/styled";
+import tw from "@tailwindcssinjs/macro";
 import PropTypes from "prop-types";
 import { useState, FC } from "react";
-import { GoArrowUp } from "react-icons/go";
 import { VOTE_TYPE } from "utils/constants";
+import { IconName } from "react-icons/fc";
+import Up from "./FcUp.svg";
 
 interface VoteInterface {
   isVoted?: boolean;
@@ -15,24 +17,14 @@ interface StyledVoteInterface {
   isClicked: boolean;
 }
 
-const Styled = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  margin-right: 12px;
-  width: 20px;
+const Styled = styled.button`
+  top: 1.25rem;
+  left: 1.25rem;
 
-  svg {
-    cursor: pointer;
-    height: 1.2rem;
-    margin: 0 2px;
-    width: 0.8rem;
-  }
+  ${tw`hover:bg-indigo-100 active:mt-1 absolute bg-white flex flex-col h-20 w-16 justify-center items-center font-semibold align-top rounded border border-gray-400 `}
+
   .arrow {
-    fill: ${(props: StyledVoteInterface) =>
-      props.isClicked ? "#616161" : "#fff"};
-    stroke: #444;
-    stroke-width: 1px;
+    ${tw`h-5 w-5`}
   }
   .left-arrow {
     fill: #060077;
@@ -77,7 +69,7 @@ const Vote: FC<VoteInterface> = (props) => {
 
   return (
     <Styled isClicked={isClicked}>
-      <GoArrowUp className="arrow" onClick={handleClick} />
+      <Up className="arrow" onClick={handleClick} />
       {props.showScore && <span className="votes">{votes}</span>}
       {!props.showScore && (
         <div>
