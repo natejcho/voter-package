@@ -18,12 +18,8 @@ interface CardInterface {
   votes: number;
 }
 
-interface StyledCardInterface {
-  isVisited: boolean;
-}
-
 const Styled = styled.li`
-  ${tw`overflow-hidden relative`}
+  ${tw`overflow-hidden relative border-0 border-b-2 border-gray-200`}
 
   .index {
     ${tw`flex justify-end`}
@@ -66,7 +62,7 @@ const Card: React.FC<CardInterface> = (props) => {
   // `/bill/${props.congress}/${props.bill_slug}`;
 
   return (
-    <Styled isVisited={false}>
+    <Styled>
       {isVisible && (
         <>
           {false && <div className="index">{props.index}.</div>}

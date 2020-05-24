@@ -3,7 +3,6 @@ import tw from "@tailwindcssinjs/macro";
 import PropTypes from "prop-types";
 import { useState, FC } from "react";
 import { VOTE_TYPE } from "utils/constants";
-import { IconName } from "react-icons/fc";
 import Up from "./FcUp.svg";
 
 interface VoteInterface {
@@ -68,13 +67,13 @@ const Vote: FC<VoteInterface> = (props) => {
   };
 
   return (
-    <Styled isClicked={isClicked}>
+    <Styled>
       <Up className="arrow" onClick={handleClick} />
       {props.showScore && <span className="votes">{votes}</span>}
       {!props.showScore && (
         <div>
-          <GoArrowUp className="left-arrow" onClick={handleLeftUpvote} />
-          <GoArrowUp className="right-arrow" onClick={handleRightUpvote} />
+          <Up className="left-arrow" onClick={handleLeftUpvote} />
+          <Up className="right-arrow" onClick={handleRightUpvote} />
         </div>
       )}
     </Styled>

@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 import Auth from "./Auth";
 import Header from "./Header";
+import Aside from "./Aside";
 import styled from "@emotion/styled";
 import tw from "@tailwindcssinjs/macro";
 
@@ -24,12 +25,10 @@ const Styled = styled.div`
       ${tw`flex justify-between mt-8 px-4`}
     }
     main {
-      ${tw`w-full`}
+      ${tw`flex-1`}
     }
 
     aside {
-      background: red;
-
       @media (min-width: 1200px) {
         width: 330px;
         ${tw`ml-5`}
@@ -55,7 +54,9 @@ function Layout(props) {
       )}
       <div className="container">
         <main>{props.children}</main>
-        <aside></aside>
+        <aside>
+          <Aside />
+        </aside>
       </div>
     </Styled>
   );
