@@ -31,7 +31,7 @@
     "@emotion/react": "^11.0.0-next.12",
     "@emotion/styled": "^11.0.0-next.12",
     "@google-cloud/firestore": "^3.7.3",
-    "apollo-server-micro": "^2.11.0",
+    "apollo-server-micro": "^2.14.2",
     "cookie": "^0.4.1",
     "firebase": "^7.13.2",
     "firebase-admin": "^8.10.0",
